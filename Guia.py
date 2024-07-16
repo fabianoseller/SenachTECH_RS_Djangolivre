@@ -20,7 +20,7 @@
 #Explorando a Estrutura do Projeto:
 # Acesse o diretório "meuprojeto" criado.
 # Observe os arquivos e pastas presentes:
-# manage.py: Script para gerenciar tarefas do Django, como criar migrações e executar testes.
+# manage.py: Script para gerenciar tarefas do Django, como criar migrações e executar teste
 # meuprojeto: Diretório principal do seu projeto, contendo o arquivo settings.py com as configurações globais da aplicação.
 # meuprojeto/urls.py: Define as URLs que serão mapeadas para as funções do seu projeto.
 # meuprojeto/wsgi.py: Ponto de entrada para o servidor web do Django.
