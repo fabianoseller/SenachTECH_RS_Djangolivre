@@ -1,3 +1,9 @@
+<div>
+<a href="https://github.com/fabianoseller"> 
+<img loading="lazy" height="180em" src="https://github-readme-stats.vercel.app/api/top-langs/?username=fabianoseller&layout=compact&langs_count=7&theme=dracula"/>
+        <img src="https://raw.githubusercontent.com/github/explore/80688e429a7d4ef2fca1e82350fe8e3517d3494d/topics/python/python.png" width="100" height="100" alt="python logo">
+</div> <img style="display: block;-webkit-user-select: none;margin: auto;background-color: hsl(0, 0%, 90%);transition: background-color 300ms;" src="https://apexensino.com.br/wp-content/uploads/2017/11/html-css-javascript.jpg">
+
 <p align="center">
   <a href="https://fastapi.tiangolo.com"><img src="https://fastapi.tiangolo.com/img/logo-margin/logo-teal.png" alt="FastAPI"></a>
 </p>
