@@ -21,3 +21,10 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('', views.index, name='index'),
 ]
+from django.urls import path
+from . import views
+
+urlpatterns = [
+    path('cadastro-filme/', views.cadastro_filme, name='cadastro_filme'),
+    # ... outras URLs ...
+]

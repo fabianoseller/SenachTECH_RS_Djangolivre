@@ -1,118 +1,81 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Página Inicial</title>
+    <title>Cadastro de Filmes Tarantino</title>
+    <style>
+        body {
+            background-image: linear-gradient(to bottom, #8fc8ca, #c2aea2);
+            font-family: Arial, sans-serif;
+        }
+        .container {
+            width: 80%;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: rgba(255, 255, 255, 0.8);
+            border-radius: 10px;
+        }
+        form {
+            display: flex;
+            flex-direction: column;
+        }
+        label {
+            margin-top: 10px;
+        }
+        input, textarea {
+            margin-bottom: 10px;
+            padding: 5px;
+        }
+        input[type="submit"] {
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            cursor: pointer;
+        }
+    </style>
 </head>
-
-<style>
-    body {
-    background-image: linear-gradient(to bottom, #8fc8ca, #c2aea2); /* Gradiente de amarelo para laranja */
-}
-</style>
-
 <body>
-    
-    <h1>Bem-vindo ao meu Aplicativo Django Livre..!</h1>
+    <div class="container">
+        <h1>Bem-vindo ao meu Aplicativo Django Livre..!</h1>
 
-    <b> No sul dos Estados Unidos, o ex-escravo Django faz uma aliança inesperada com o caçador de recompensas Schultz para caçar os criminosos mais procurados do país e resgatar sua esposa de um fazendeiro que força seus escravos a participar de competições mortais.
-        Data de lançamento: 18 de janeiro de 2013 (Brasil)
-        Diretor: Quentin Tarantino
-        Indicações: MTV Movie Award: Melhor Momento "Que P**** é Essa?", MAIS
-        Música composta por: Ennio Morricone & Dulce Pontes, Varios
-        Prêmios: MTV Movie Award: Melhor Momento "Que P**** é Essa?", MAIS
-        Bilheteria: 426 milhões USD</b>
-   
-    <p>Se liguem!!!</p>
+        <b>No sul dos Estados Unidos, o ex-escravo Django faz uma aliança inesperada com o caçador de recompensas Schultz para caçar os criminosos mais procurados do país e resgatar sua esposa de um fazendeiro que força seus escravos a participar de competições mortais.
+            Data de lançamento: 18 de janeiro de 2013 (Brasil)
+            Diretor: Quentin Tarantino
+            Indicações: MTV Movie Award: Melhor Momento "Que P**** é Essa?", MAIS
+            Música composta por: Ennio Morricone & Dulce Pontes, Varios
+            Prêmios: MTV Movie Award: Melhor Momento "Que P**** é Essa?", MAIS
+            Bilheteria: 426 milhões USD</b>
+       
+        <p>Se liguem!!!</p>
 
-    <p>HTML is fun to learn.</p>
+        <p>HTML is fun to learn.</p>
 
-    <p><em>e liguem!!!</em></p>
-    <strong>Este é um aplicativo Django simples que demonstra a navegação.!</strong>
-    
-    <br>
+        <p><em>e liguem!!!</em></p>
+        <strong>Este é um aplicativo Django simples que demonstra a navegação.!</strong>
+        
+        <br>
 
-    <div class="container container--flex--wrap--mobile">
-        <a class="logo" href="https://www.djangoproject.com/">Django</a>
-        <p class="meta">The web framework for perfectionists with deadlines.</p>
-        <div class="mobile-toggle">
-          
-    
-    <button class="theme-toggle">
-      <div class="visually-hidden theme-label-when-auto">Toggle theme (current theme: auto)</div>
-      <div class="visually-hidden theme-label-when-light">Toggle theme (current theme: light)</div>
-      <div class="visually-hidden theme-label-when-dark">Toggle theme (current theme: dark)</div>
-    
-      <div class="visually-hidden">Toggle Light / Dark / Auto color theme</div>
-      <svg aria-hidden="true" class="theme-icon-when-auto">
-        <use xlink:href="#icon-auto"></use>
-      </svg>
-      <svg aria-hidden="true" class="theme-icon-when-dark">
-        <use xlink:href="#icon-moon"></use>
-      </svg>
-      <svg aria-hidden="true" class="theme-icon-when-light">
-        <use xlink:href="#icon-sun"></use>
-      </svg>
-    </button>
-    
+        <div class="container container--flex--wrap--mobile">
+            <a class="logo" href="https://www.djangoproject.com/">Django</a>
+            <p class="meta">The web framework for perfectionists with deadlines.</p>
         </div>
-        <button class="menu-button">
-          <i class="icon icon-reorder"></i>
-          <span class="visuallyhidden">Menu</span>
-        </button>
-        <div role="navigation">
-          <ul>
-            <li>
-              <a href="https://www.djangoproject.com/start/overview/">Overview</a>
-            </li>
-            <li>
-              <a href="https://www.djangoproject.com/download/">Download</a>
-            </li>
-            <li class="active">
-              <a href="https://docs.djangoproject.com/">Documentation</a>
-            </li>
-            <li>
-              <a href="https://www.djangoproject.com/weblog/">News</a>
-            </li>
-            <li>
-              <a href="https://www.djangoproject.com/community/">Community</a>
-            </li>
-            <li>
-              <a href="https://github.com/django/django" target="_blank" rel="noopener">Code</a>
-            </li>
-            <li>
-              <a href="https://code.djangoproject.com/">Issues</a>
-            </li>
-            <li>
-              <a href="https://www.djangoproject.com/foundation/">About</a>
-            </li>
-            <li>
-              <a href="https://www.djangoproject.com/fundraising/">♥ Donate</a>
-            </li>
-            <li>
-              
-    
-    <button class="theme-toggle">
-      <div class="visually-hidden theme-label-when-auto">Toggle theme (current theme: auto)</div>
-      <div class="visually-hidden theme-label-when-light">Toggle theme (current theme: light)</div>
-      <div class="visually-hidden theme-label-when-dark">Toggle theme (current theme: dark)</div>
-    
-      <div class="visually-hidden">Toggle Light / Dark / Auto color theme</div>
-      <svg aria-hidden="true" class="theme-icon-when-auto">
-        <use xlink:href="#icon-auto"></use>
-      </svg>
-      <svg aria-hidden="true" class="theme-icon-when-dark">
-        <use xlink:href="#icon-moon"></use>
-      </svg>
-      <svg aria-hidden="true" class="theme-icon-when-light">
-        <use xlink:href="#icon-sun"></use>
-      </svg>
-    </button>
-    
-            </li>
-          </ul>
-        </div>
-      </div>
-    
+
+        <h2>Cadastro de Filmes Tarantino</h2>
+        <form action="#" method="post">
+            <label for="nome">Nome do Filme:</label>
+            <input type="text" id="nome" name="nome" required>
+
+            <label for="ano">Ano de Lançamento:</label>
+            <input type="number" id="ano" name="ano" required>
+
+            <label for="onde_assistir">Onde Assistir:</label>
+            <input type="text" id="onde_assistir" name="onde_assistir" required>
+
+            <label for="elenco">Elenco:</label>
+            <textarea id="elenco" name="elenco" rows="4" required></textarea>
+
+            <input type="submit" value="Cadastrar Filme">
+        </form>
+    </div>
 </body>
-
 </html>

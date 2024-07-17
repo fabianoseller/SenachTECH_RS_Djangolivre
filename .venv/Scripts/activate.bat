@@ -8,7 +8,7 @@ if defined _OLD_CODEPAGE (
     "%SystemRoot%\System32\chcp.com" 65001 > nul
 )
 
-set VIRTUAL_ENV=C:\Users\182300640\pyy16072024\SenachTECH_RS_Djangolivre\.venv
+set VIRTUAL_ENV=C:\Senac\SenachTECH_RS_Djangolivre\.venv
 
 if not defined PROMPT set PROMPT=$P$G
 
