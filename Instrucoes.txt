@@ -1,0 +1,26 @@
+Atualizar  urls.py do seu aplicativo Django (não ???? o urls.py do projeto principal).
+ view  cadastro de filmes. Assumindo que você nomeou a view como 'cadastro_filme' e ela está no arquivo views.py do seu aplicativo, você adicionaria esta linha no topo do arquivo:
+python
+from .views import cadastro_filme
+
+Dentro da lista urlpatterns, adicione um novo path para a view de cadastro de filmes:
+python
+from django.urls import path
+from .views import cadastro_filme
+
+urlpatterns = [
+    
+    path('cadastro-filme/', cadastro_filme, name='cadastro_filme'),
+]
+
+Aqui está uma explicação do que cada parte do path significa:
+'cadastro-filme/': Este é o URL que os usuários verão no navegador. Por exemplo, se seu site for "www.exemplo.com", esta página seria acessada em "www.exemplo.com/cadastro-filme/".
+cadastro_filme: Esta é a função de view que esta views.py.
+name='cadastro_filme': Este é o nome pode usar para se referir a esta URL em outras partes do seu projeto Django, como em templates.
+Se você estiver usando o arquivo urls.py do projeto principal, certifique-se de incluir as URLs do seu aplicativo. No arquivo urls.py do projeto, você teria algo as
+
+https://www.tecmundo.com.br/minha-serie/281000-filmes-quentin-tarantino-pior-melhor.htm
+
+
+NA AULA DE 17.07 >>> ARRUMAR Vies  arrumar funções  modelos forms 
+url utl settins e setting aplicações
