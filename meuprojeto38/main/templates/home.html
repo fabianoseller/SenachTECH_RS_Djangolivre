@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+
+{% block content %}
+  <div class="container">
+      <h1>Cadastro de Filmes Tarantino</h1>
+      <form method="post">
+          {% csrf_token %}
+          <label for="id_nome">Nome do Filme:</label>
+          {{ form.nome }}
+
+          <label for="id_ano_lancamento">Ano de Lançamento:</label>
+          {{ form.ano_lancamento }}
+
+          <label for="id_onde_assistir">Onde Assistir:</label>
+          {{ form.onde_assistir }}
+
+          <label for="id_elenco">Elenco:</label>
+          {{ form.elenco }}
+
+          <button type="submit">Cadastrar Filme</button>
+      </form>
+  </div>
+{% endblock %}

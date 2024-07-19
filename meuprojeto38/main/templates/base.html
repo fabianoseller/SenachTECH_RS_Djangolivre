@@ -1,10 +1,17 @@
-{% extends 'base.html' %}
-
-{% block content %}
-<h2>Cadastro de Filmes Tarantino</h2>
-<form method="post">
-    {% csrf_token %}
-    {{ form.as_p }}
-    <button type="submit" class="btn btn-primary">Cadastrar Filme</button>
-</form>
-{% endblock %}
+{% load static %}
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Meu Site{% endblock %}</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'css/styles.css' %}">
+</head>
+<body>
+    <div class="image-container"></div>
+    <main>
+        {% block content %}
+        {% endblock %}
+    </main>
+</body>
+</html>

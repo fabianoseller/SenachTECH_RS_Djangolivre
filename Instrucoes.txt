@@ -24,3 +24,50 @@ https://www.tecmundo.com.br/minha-serie/281000-filmes-quentin-tarantino-pior-mel
 
 NA AULA DE 17.07 >>> ARRUMAR Vies  arrumar funções  modelos forms 
 url utl settins e setting aplicações
+
+
+myproject/
+    ├── myapp/
+    │   ├── __init__.py
+    │   ├── admin.py
+    │   ├── apps.py
+    │   ├── migrations/
+    │   ├── models.py
+    │   ├── tests.py
+    │   ├── urls.py
+    │   ├── views.py  # A função login_view deve estar aqui
+    │   └── templates/
+    │       └── index.html
+    ├── myproject/
+    │   ├── __init__.py
+    │   ├── settings.py
+    │   ├── urls.py
+    │   └── wsgi.py
+    └── manage.py
+
+    meuprojeto38/
+├── manage.py
+├── meuprojeto38/
+│   ├── __init__.py
+│   ├── settings.py
+│   ├── urls.py
+│   └── wsgi.py
+├── main/
+│   ├── __init__.py
+│   ├── admin.py
+│   ├── apps.py
+│   ├── models.py
+│   ├── forms.py
+│   ├── tests.py
+│   ├── views.py
+│   ├── urls.py
+│   └── templates/
+│       ├── base.html
+│       ├── index.html
+│       ├── register.html
+│       └── home.html
+└── static/
+    ├── css/
+    │   └── styles.css
+    └── images/
+        └── pulp-fiction.jpg
