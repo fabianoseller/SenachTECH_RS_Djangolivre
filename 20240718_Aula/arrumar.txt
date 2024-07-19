@@ -1,0 +1,15 @@
+
+# url views bando de dados
+# 1html retorno config 
+Performing system checks...
+
+System check identified no issues (0 silenced).
+July 18, 2024 - 21:24:50
+Django version 5.0.7, using settings 'meuprojeto38.settings'
+Starting development server at http://127.0.0.1:8000/
+Quit the server with CTRL-BREAK.
+
+[18/Jul/2024 21:24:54] "GET / HTTP/1.1" 200 2810
+Forbidden (CSRF cookie not set.): /
+[18/Jul/2024 21:25:48] "POST / HTTP/1.1" 403 2869
+PS C:\Users\182300640\pyy16072024\SenachTECH_RS_Djangolivre\meuprojeto38> 
