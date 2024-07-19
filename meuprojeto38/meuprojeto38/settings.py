@@ -9,9 +9,9 @@ https://docs.djangoproject.com/en/5.0/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/5.0/ref/settings/
 """
-
+import os
 from pathlib import Path
-
+from main.base_bd_config import criar_banco_de_dados
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -24,7 +24,8 @@ SECRET_KEY = 'django-insecure-qp7%+p8h19q1n(9q4&%%-gv)(xfz!)%owp+j6(r$_!-2skw11m
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
-
+if DEBUG:
+    bd =  criar_banco_de_dados ()
 ALLOWED_HOSTS = []
 
 
@@ -74,12 +75,28 @@ WSGI_APPLICATION = 'meuprojeto38.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/5.0/ref/settings/#databases
 
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.sqlite3',
+#         'NAME': BASE_DIR / 'db.sqlite3',
+#     }
+# }
+
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'taranbanco', 
+        'USER': 'root', 
+        'PASSWORD': '', 
+        'HOST': '127.0.0.1', 
+        'PORT': '3306', 
+        'OPTIONS': {
+            'autocommit': True,
+        }
     }
 }
+
+
 
 
 # Password validation
@@ -122,3 +139,6 @@ STATIC_URL = 'static/'
 # https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+LOGOUT_REDIRECT_URL = '/'
+LOGIN_REDIRECT_URL = '/login.html'
