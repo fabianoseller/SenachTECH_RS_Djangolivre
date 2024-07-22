@@ -14,3 +14,50 @@
   </div>
 {% endblock %}
 
+{% extends "base.html" %}
+
+{% block content %}
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <title>Register</title>
+</head>
+<body style="text-align: center;font-size: 25px;font-family: Segoe UI;">
+    <div>
+        <!-- Adicionando a imagem do GIF Python aqui -->
+        <img class="imgpython" src="{{ url_for('static', filename='giphy.gif') }}">
+        
+        <h1 style="text-align: center; font-size: 25px; font-family: Segoe UI;">Sistema de chamados Flask</h1>
+
+        <h2>Register</h2>
+        <form method="POST">
+            {{ form.hidden_tag() }}
+            <div>
+                {{ form.username(class="inputlogin", placeholder="Username") }}
+            </div>
+            <div>
+                {{ form.password(class="inputlogin", placeholder="Senha", style="margin: 10px") }}
+            </div>
+            <div>
+                {{ form.email(class="inputlogin", placeholder="Email") }}
+            </div>
+            <button type="submit" class="botaologin">Register</button>
+        </form>
+
+        {% if msg %}
+        <div class="msg-alertas">
+            <span class="ms erro"><i class="icon icon-hand-paper-o"></i>{{ msg }}</span>
+        </div>
+        {% endif %}
+
+        <div style="margin: 10px">
+            <a class="botao" href="{{url_for('contato')}}">Contato</a>
+        </div>
+    </div>
+</body>
+</html>
+{% endblock %}
