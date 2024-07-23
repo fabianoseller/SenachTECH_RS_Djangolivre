@@ -1,23 +1,54 @@
 {% extends "base.html" %}
+{% load static %}
+
+{% block title %}Home - Sistema de Chamados{% endblock %}
 
 {% block content %}
-  <div class="container">
-      <h1>Cadastro de Filmes Tarantino</h1>
-      <form method="post">
-          {% csrf_token %}
-          <label for="id_nome">Nome do Filme:</label>
-          {{ form.nome }}
+<div class="image-container left-image"></div>
+<div class="central-container">
+    <h1 class="system-title">Bem-vindo ao Sistema de Chamados</h1>
 
-          <label for="id_ano_lancamento">Ano de Lançamento:</label>
-          {{ form.ano_lancamento }}
+    {% if messages %}
+    <div class="msg-alertas">
+        {% for message in messages %}
+        <span class="ms {% if message.tags %}{{ message.tags }}{% endif %}">
+            {{ message }}
+        </span>
+        {% endfor %}
+    </div>
+    {% endif %}
 
-          <label for="id_onde_assistir">Onde Assistir:</label>
-          {{ form.onde_assistir }}
+    <div class="actions">
+        <a href="{% url 'add_filme' %}" class="btn">Adicionar Filme</a>
+        <a href="{% url 'logout' %}" class="btn">Logout</a>
+    </div>
 
-          <label for="id_elenco">Elenco:</label>
-          {{ form.elenco }}
-
-          <button type="submit">Cadastrar Filme</button>
-      </form>
-  </div>
+    <h2 class="section-title">Seus Filmes</h2>
+    <div class="filmes-list">
+        {% if user_filmes %}
+            <ul>
+                {% for user_filme in user_filmes %}
+                <li>
+                    <div class="filme-info">
+                        <h3>{{ user_filme.filme.nome }}</h3>
+                        <p><strong>Ano de Lançamento:</strong> {{ user_filme.filme.ano_lancamento }}</p>
+                        <p><strong>Onde Assistir:</strong> {{ user_filme.filme.onde_assistir }}</p>
+                        <p><strong>Elenco:</strong> {{ user_filme.filme.elenco }}</p>
+                    </div>
+                    <div class="filme-actions">
+                        <a href="{% url 'edit_filme' user_filme.filme.id %}" class="btn">Editar</a>
+                        <form method="post" action="{% url 'delete_filme' user_filme.filme.id %}">
+                            {% csrf_token %}
+                            <button type="submit" class="btn btn-danger">Excluir</button>
+                        </form>
+                    </div>
+                </li>
+                {% endfor %}
+            </ul>
+        {% else %}
+            <p>Você ainda não adicionou nenhum filme.</p>
+        {% endif %}
+    </div>
+</div>
+<div class="image-container right-image"></div>
 {% endblock %}

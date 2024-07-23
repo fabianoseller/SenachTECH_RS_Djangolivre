@@ -1,63 +1,115 @@
-
-
 {% extends "base.html" %}
+{% load static %}
 
 {% block content %}
-  <div class="container">
-      <h2>Registre-se</h2>
-      <form method="post">
-          {% csrf_token %}
-          {{ form.as_p }}
-          <button type="submit">Registrar</button>
-      </form>
-      <p class="register-link">Já tem uma conta? <a href="{% url 'login' %}">Login</a></p>
-  </div>
+<div class="image-container left-image"></div>
+<div class="central-container">
+    <h2>Registre-se</h2>
+    <form method="post" class="register-form">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Registrar</button>
+    </form>
+    <p class="register-link">Já tem uma conta? <a href="{% url 'login' %}">Login</a></p>
+
+    {% if messages %}
+    <ul class="messages">
+        {% for message in messages %}
+        <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+        {% endfor %}
+    </ul>
+    {% endif %}
+
+    <img class="imgpython" src="{% static 'images/giphy.gif' %}" alt="Python GIF">
+    <h1 class="system-title">Sistema de chamados Django</h1>
+</div>
+<div class="image-container right-image"></div>
 {% endblock %}
 
-{% extends "base.html" %}
+{% block extra_css %}
+<style>
+    .main-container {
+        display: flex;
+        width: 100%;
+        height: 100vh;
+    }
 
-{% block content %}
-<!DOCTYPE html>
-<html lang="pt-br">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
-    <title>Register</title>
-</head>
-<body style="text-align: center;font-size: 25px;font-family: Segoe UI;">
-    <div>
-        <!-- Adicionando a imagem do GIF Python aqui -->
-        <img class="imgpython" src="{{ url_for('static', filename='giphy.gif') }}">
-        
-        <h1 style="text-align: center; font-size: 25px; font-family: Segoe UI;">Sistema de chamados Flask</h1>
+    .image-container {
+        flex: 1;
+        background-size: cover;
+        background-position: center;
+    }
 
-        <h2>Register</h2>
-        <form method="POST">
-            {{ form.hidden_tag() }}
-            <div>
-                {{ form.username(class="inputlogin", placeholder="Username") }}
-            </div>
-            <div>
-                {{ form.password(class="inputlogin", placeholder="Senha", style="margin: 10px") }}
-            </div>
-            <div>
-                {{ form.email(class="inputlogin", placeholder="Email") }}
-            </div>
-            <button type="submit" class="botaologin">Register</button>
-        </form>
+    .left-image {
+        background-image: url("{% static 'images/pulp-fiction.jpg' %}");
+    }
 
-        {% if msg %}
-        <div class="msg-alertas">
-            <span class="ms erro"><i class="icon icon-hand-paper-o"></i>{{ msg }}</span>
-        </div>
-        {% endif %}
+    .right-image {
+        background-image: url("{% static 'images/pulp-fiction.jpg' %}");
+    }
 
-        <div style="margin: 10px">
-            <a class="botao" href="{{url_for('contato')}}">Contato</a>
-        </div>
-    </div>
-</body>
-</html>
+    .central-container {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        background-color: rgba(0, 0, 0, 0.8);
+        padding: 20px;
+    }
+
+    .form-group {
+        width: 100%;
+        margin-bottom: 15px;
+    }
+
+    .inputlogin {
+        width: 100%;
+        padding: 10px;
+        border: 1px solid #555;
+        background-color: #444;
+        color: #fff;
+        border-radius: 5px;
+    }
+
+    .botaologin {
+        width: 100%;
+        padding: 10px;
+        background-color: #ffcc00;
+        color: #000;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+    }
+
+    .botaologin:hover {
+        background-color: #e6b800;
+    }
+
+    .register-link {
+        color: #a9a9a9;
+        margin-top: 15px;
+    }
+
+    .messages {
+        list-style-type: none;
+        padding: 0;
+    }
+
+    .messages li {
+        color: red;
+        margin-bottom: 10px;
+    }
+
+    .imgpython {
+        max-width: 100%;
+        height: auto;
+        margin-bottom: 20px;
+    }
+
+    .system-title {
+        font-size: 24px;
+        margin-bottom: 20px;
+    }
+</style>
 {% endblock %}

@@ -21,6 +21,7 @@
 #         fields = ['nome', 'ano_lancamento', 'onde_assistir', 'elenco']
 
 from django.db import models
+from django.contrib.auth.models import User
 
 class Filme(models.Model):
     nome = models.CharField(max_length=100)
@@ -30,4 +31,22 @@ class Filme(models.Model):
 
     def __str__(self):
         return self.nome
+
+
+
+
+class Profile(models.Model):
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
+    bio = models.TextField(max_length=500, blank=True)
+    location = models.CharField(max_length=30, blank=True)
+    birth_date = models.DateField(null=True, blank=True)
+
+class Cadastro(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    titulo = models.CharField(max_length=100)
+    descricao = models.TextField()
+    data_criacao = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return self.titulo
 

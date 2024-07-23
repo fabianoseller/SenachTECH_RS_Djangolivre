@@ -1,48 +1,98 @@
-<!DOCTYPE html>
-<!--Esta linha declara o tipo de documento como HTML.-->
-<html lang="pt-br">
-    <!--Esta linha define o elemento raiz do documento HTML.
-O atributo lang="pt-br" especifica o idioma do conteúdo como português brasileiro. Isso ajuda os mecanismos de pesquisa e tecnologias assistivas a entender melhor o conteúdo.-->
-<head>
-    <!--Estas linhas estão contidas dentro do elemento <head>, que fornece metadados sobre o documento que não são diretamente exibidos na página.-->
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <<link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
-    <title>Login</title>
-</head>
-<body style="text-align: center;font-size: 25px;font-family: Segoe UI;">
-    <div>
-        <img class="imgpython" src="{{url_for('static', filename='giphy.gif')}}">
-        <h1 style="text-align: center; font-size: 25px; font-family: Segoe UI;">Sistema de chamados Flask</h1>
+{% extends "base.html" %}
+{% load static %}
 
-        <form method="POST" action="/validalogin">
-            <div>
-                <input class="inputlogin" type="text" name="email" placeholder="Email">
-            </div>
-            <div>
-                <input style="margin: 10px" class="inputlogin" type="password" name="senha" placeholder="Senha">
-            </div>
+{% block title %}Login - Sistema de Chamados{% endblock %}
 
-            <button type="submit" class="botaologin">Entrar</button>
-            <div style="margin: 10px">
-              
-           
-        </form>
-        {% set flashed_messages = get_flashed_messages() %}
-        {% if mensagens%}
-           <div class="msg-alertas">
-            {%for msg in mensagens%}
-            <span class="ms erro"><i class="icon icon-hand-paper-o"></i>{{(msg)}}</span>
-           
-            </div>
-            {%endfor%}
-   
-        {%endif%}
-        <a class="botao" href="{{url_for('contato')}}">Contato</a>
-        <div style="margin: 10px">
-            
+{% block content %}
+<div class="image-container left-image"></div>
+<div class="central-container">
+    <img class="imgpython" src="{% static 'images/giphy.gif' %}" alt="Python GIF">
+    <h1 class="system-title">Sistema de Chamados Django</h1>
+
+    <form method="POST" action="{% url 'login' %}">
+        {% csrf_token %}
+        <div class="form-group">
+            <input class="inputlogin" type="text" name="username" placeholder="Nome de usuário" required>
+        </div>
+        <div class="form-group">
+            <input class="inputlogin" type="password" name="password" placeholder="Senha" required>
+        </div>
+        <button type="submit" class="botaologin">Entrar</button>
+    </form>
+
+    {% if messages %}
+    <div class="msg-alertas">
+        {% for message in messages %}
+        <span class="ms {% if message.tags %}{{ message.tags }}{% endif %}">
+            {{ message }}
+        </span>
+        {% endfor %}
     </div>
-    
-</body>
-</html>
+    {% endif %}
+
+    <p class="register-link">Não tem uma conta? <a href="{% url 'register' %}">Registre-se</a></p>
+</div>
+<div class="image-container right-image"></div>
+{% endblock %}
+
+{% block extra_css %}
+<style>
+    .main-container {
+        display: flex;
+        width: 100%;
+        height: 100vh;
+    }
+
+    .image-container {
+        flex: 1;
+        background-size: cover;
+        background-position: center;
+    }
+
+    .left-image {
+        background-image: url("{% static 'images/pulp-fiction.jpg' %}");
+    }
+
+    .right-image {
+        background-image: url("{% static 'images/pulp-fiction.jpg' %}");
+    }
+
+    .central-container {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        background-color: rgba(0, 0, 0, 0.8);
+        padding: 20px;
+    }
+
+    .form-group {
+        width: 100%;
+        margin-bottom: 15px;
+    }
+
+    .inputlogin {
+        width: 100%;
+        padding: 10px;
+        border: 1px solid #555;
+        background-color: #444;
+        color: #fff;
+        border-radius: 5px;
+    }
+
+    .botaologin {
+        width: 100%;
+        padding: 10px;
+        background-color: #ffcc00;
+        color: #000;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+    }
+
+    .botaologin:hover {
+        background-color: #e6b800;
+    }
+</style>
+{% endblock %}
