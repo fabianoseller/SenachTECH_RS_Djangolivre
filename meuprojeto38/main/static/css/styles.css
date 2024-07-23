@@ -20,6 +20,7 @@ body {
     flex: 1;
     background-size: cover;
     background-position: center;
+    opacity: 0.5; /* Ajuste a opacidade para criar o efeito de transparência */
 }
 
 .left-image {
