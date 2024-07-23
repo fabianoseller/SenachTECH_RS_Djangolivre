@@ -131,5 +131,11 @@ STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 # Redirect URLs
-LOGOUT_REDIRECT_URL = '/'
-LOGIN_REDIRECT_URL = '/register'
+
+# meuprojeto38/meuprojeto38/settings.py
+
+LOGIN_URL = 'main:login'
+LOGIN_REDIRECT_URL = 'main:home'
+LOGOUT_REDIRECT_URL = 'main:home'
+
+

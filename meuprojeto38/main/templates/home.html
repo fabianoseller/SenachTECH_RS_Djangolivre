@@ -19,8 +19,8 @@
     {% endif %}
 
     <div class="actions">
-        <a href="{% url 'add_filme' %}" class="btn">Adicionar Filme</a>
-        <a href="{% url 'logout' %}" class="btn">Logout</a>
+        <a href="{% url 'main:add_filme' %}" class="btn">Adicionar Filme</a>
+        <a href="{% url 'main:logout' %}" class="btn">Logout</a>
     </div>
 
     <h2 class="section-title">Seus Filmes</h2>
@@ -36,8 +36,8 @@
                         <p><strong>Elenco:</strong> {{ user_filme.filme.elenco }}</p>
                     </div>
                     <div class="filme-actions">
-                        <a href="{% url 'edit_filme' user_filme.filme.id %}" class="btn">Editar</a>
-                        <form method="post" action="{% url 'delete_filme' user_filme.filme.id %}">
+                        <a href="{% url 'main:edit_filme' user_filme.filme.id %}" class="btn">Editar</a>
+                        <form method="post" action="{% url 'main:delete_filme' user_filme.filme.id %}">
                             {% csrf_token %}
                             <button type="submit" class="btn btn-danger">Excluir</button>
                         </form>
