@@ -5,6 +5,8 @@ from django.contrib import messages
 from .forms import UserRegisterForm, FilmeForm
 from .models import Filme, Cadastro
 
+
+
 def login_view(request):
     if request.method == 'POST':
         username = request.POST['username']
@@ -74,3 +76,7 @@ def logout_view(request):
     logout(request)
     messages.info(request, 'Você foi desconectado com sucesso.')
     return redirect('login')
+
+
+
+#  return render(request, 'main/login.html', context)

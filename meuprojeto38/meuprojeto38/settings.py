@@ -56,6 +56,8 @@ TEMPLATES = [
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
         'DIRS': [os.path.join(BASE_DIR, 'templates')],
         'APP_DIRS': True,
+        'DIRS': [os.path.join(BASE_DIR, 'templates')],
+        'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
                 'django.template.context_processors.debug',
@@ -133,8 +135,9 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 # Authentication settings
-LOGIN_REDIRECT_URL = '/dashboard'
-LOGOUT_REDIRECT_URL = '/'
+LOGIN_URL = 'login'
+LOGIN_REDIRECT_URL = 'main:home'
+LOGOUT_REDIRECT_URL = 'main:home'
 
 # Configurações de sessão
 SESSION_COOKIE_AGE = 1800  # 30 minutos em segundos
