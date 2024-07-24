@@ -1,4 +1,4 @@
-{% extends "base.html" %}
+{% comment %} {% extends "base.html" %}
 {% load static %}
 
 {% block title %}Login - Sistema de Chamados{% endblock %}
@@ -10,6 +10,107 @@
     <h1 class="system-title">Sistema de Chamados Django</h1>
 
     <form method="POST" action="{login' %}">
+        {% csrf_token %}
+        <div class="form-group">
+            <input class="inputlogin" type="text" name="username" placeholder="Nome de usuário" required>
+        </div>
+        <div class="form-group">
+            <input class="inputlogin" type="password" name="password" placeholder="Senha" required>
+        </div>
+        <button type="submit" class="botaologin">Entrar</button>
+    </form>
+
+    {% if messages %}
+    <div class="msg-alertas">
+        {% for message in messages %}
+        <span class="ms {% if message.tags %}{{ message.tags }}{% endif %}">
+            {{ message }}
+        </span>
+        {% endfor %}
+    </div>
+    {% endif %}
+
+    <p class="register-link">Não tem uma conta? <a href="{% url 'main:register' %}">Registre-se</a></p>
+</div>
+<div class="image-container right-image"></div>
+{% endblock %}
+
+{% block extra_css %}
+<style>
+    .main-container {
+        display: flex;
+        width: 100%;
+        height: 100vh;
+    }
+
+    .image-container {
+        flex: 1;
+        background-size: cover;
+        background-position: center;
+    }
+
+    .left-image {
+        background-image: url("{% static 'images/pulp-fiction.jpg' %}");
+    }
+
+    .right-image {
+        background-image: url("{% static 'images/pulp-fiction.jpg' %}");
+    }
+
+    .central-container {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        background-color: rgba(0, 0, 0, 0.8);
+        padding: 20px;
+    }
+
+    .form-group {
+        width: 100%;
+        margin-bottom: 15px;
+    }
+
+    .inputlogin {
+        width: 100%;
+        padding: 10px;
+        border: 1px solid #555;
+        background-color: #444;
+        color: #fff;
+        border-radius: 5px;
+    }
+
+    .botaologin {
+        width: 100%;
+        padding: 10px;
+        background-color: #ffcc00;
+        color: #000;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+    }
+
+    .botaologin:hover {
+        background-color: #e6b800;
+    }
+</style>
+{% endblock %} {% endcomment %}
+
+
+<!-- meuprojeto38/main/templates/main/login.html -->
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}Login - Sistema de Chamados{% endblock %}
+
+{% block content %}
+<div class="image-container left-image"></div>
+<div class="central-container">
+    <img class="imgpython" src="{% static 'images/giphy.gif' %}" alt="Python GIF">
+    <h1 class="system-title">Sistema de Chamados Django</h1>
+
+    <form method="POST" action="/login/"> 
         {% csrf_token %}
         <div class="form-group">
             <input class="inputlogin" type="text" name="username" placeholder="Nome de usuário" required>

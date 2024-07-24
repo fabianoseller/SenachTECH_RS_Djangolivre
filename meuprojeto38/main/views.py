@@ -5,8 +5,6 @@ from django.contrib import messages
 from .forms import UserRegisterForm, FilmeForm
 from .models import Filme, Cadastro
 
-
-
 def login_view(request):
     if request.method == 'POST':
         username = request.POST['username']
@@ -51,6 +49,21 @@ def add_filme_view(request):
     return render(request, 'main/add_filme.html', {'form': form})
 
 @login_required
+def add_filme_view(request):
+    print(f"Method: {request.method}, Path: {request.path}")
+    if request.method == 'POST':
+        form = FilmeForm(request.POST)
+        if form.is_valid():
+            form.save()
+            messages.success(request, 'Filme adicionado com sucesso!')
+            return redirect('home')
+    else:
+        form = FilmeForm()
+    return render(request, 'main/add_filme.html', {'form': form})
+
+    
+    
+@login_required
 def edit_filme_view(request, filme_id):
     filme = get_object_or_404(Filme, id=filme_id)
     if request.method == 'POST':
@@ -76,6 +89,8 @@ def logout_view(request):
     logout(request)
     messages.info(request, 'Você foi desconectado com sucesso.')
     return redirect('login')
+
+
 
 
 

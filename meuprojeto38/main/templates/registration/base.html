@@ -10,13 +10,13 @@
 </head>
 <body>
     <nav>
-        <a href="{% url 'main:home' %}">Home</a>
+        <a href="/home">Home</a>
         {% if user.is_authenticated %}
-            <a href="{% url 'main:logout' %}">Logout</a>
-            <a href="{% url 'main:profile' %}">Profile</a>
+            <a href="logout">Logout</a>
+            <a href="profile">Profile</a>
         {% else %}
-            <a href="{% url 'main:login' %}">Login</a>
-            <a href="{% url 'main:register' %}">Register</a>
+            <a href="login">Login</a>
+            <a href="register">Register</a>
         {% endif %}
     </nav>
     <div class="main-container">

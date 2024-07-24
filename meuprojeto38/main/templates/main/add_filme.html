@@ -1,38 +1,43 @@
+<!-- meuprojeto38/main/templates/main/add_filme.html -->
 {% extends "base.html" %}
 {% load static %}
 
-{% block title %}Registre-se - S Sistema de Registros de filmes Tarantino{% endblock %}
+{% block title %}Adicionar Filme - Sistema de Chamados{% endblock %}
 
 {% block content %}
 <div class="image-container left-image"></div>
 <div class="central-container">
-    <img class="imgpython" src="{% static 'images/giphy.gif' %}" alt="Python GIF">
-    <h1 class="system-title">Sistema de Registros de filmes Tarantino</h1>
-    
-    <h2>Registre-se</h2>
-    <form method="post" class="register-form">
+    <h1 class="system-title">Adicionar Filme</h1>
+
+    <form method="POST" name="add_filme_form">
         {% csrf_token %}
         {{ form.as_p }}
-        <button type="submit" class="botaologin">Registrar</button>
+        <button type="submit" class="btn">Adicionar Filme</button>
     </form>
-    
-    {% if messages %}
-    <ul class="messages">
-        {% for message in messages %}
-        <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
-        {% endfor %}
-    </ul>
-    {% endif %}
 
-    <p class="register-link">Já tem uma conta? <a href="login">Login</a></p>
+    {% if messages %}
+    <div class="msg-alertas">
+        {% for message in messages %}
+        <span class="ms {% if message.tags %}{{ message.tags }}{% endif %}">
+            {{ message }}
+        </span>
+        {% endfor %}
+    </div>
+    {% endif %}
 </div>
 <div class="image-container right-image"></div>
 {% endblock %}
 
-
-
 {% block extra_css %}
 <style>
+    body {
+        background-color: #2c2c2c;
+        color: #f5f5f5;
+        font-family: 'Arial', sans-serif;
+        margin: 0;
+        padding: 0;
+    }
+
     .main-container {
         display: flex;
         width: 100%;
@@ -63,12 +68,30 @@
         padding: 20px;
     }
 
-    .form-group {
+    .system-title {
+        font-size: 24px;
+        margin-bottom: 20px;
+        color: #ffcc00;
+    }
+
+    form {
         width: 100%;
+        max-width: 400px;
+    }
+
+    form p {
         margin-bottom: 15px;
     }
 
-    .inputlogin {
+    form label {
+        display: block;
+        margin-bottom: 5px;
+        color: #ffcc00;
+    }
+
+    form input[type="text"],
+    form input[type="number"],
+    form textarea {
         width: 100%;
         padding: 10px;
         border: 1px solid #555;
@@ -77,44 +100,39 @@
         border-radius: 5px;
     }
 
-    .botaologin {
-        width: 100%;
-        padding: 10px;
+    .btn {
         background-color: #ffcc00;
         color: #000;
+        padding: 10px 15px;
         border: none;
         border-radius: 5px;
         cursor: pointer;
+        font-size: 16px;
     }
 
-    .botaologin:hover {
+    .btn:hover {
         background-color: #e6b800;
     }
 
-    .register-link {
-        color: #a9a9a9;
-        margin-top: 15px;
+    .msg-alertas {
+        margin-top: 20px;
     }
 
-    .messages {
-        list-style-type: none;
-        padding: 0;
-    }
-
-    .messages li {
-        color: red;
+    .ms {
+        display: block;
+        padding: 10px;
         margin-bottom: 10px;
+        border-radius: 5px;
     }
 
-    .imgpython {
-        max-width: 100%;
-        height: auto;
-        margin-bottom: 20px;
+    .ms.error {
+        background-color: #ffcccb;
+        color: #721c24;
     }
 
-    .system-title {
-        font-size: 24px;
-        margin-bottom: 20px;
+    .ms.success {
+        background-color: #d4edda;
+        color: #155724;
     }
 </style>
 {% endblock %}

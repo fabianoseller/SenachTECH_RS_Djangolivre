@@ -4,45 +4,55 @@
 {% block title %}Registre-se - Bem-vindo ao Sistema de Registros de filmes Tarantino{% endblock %}
 
 {% block content %}
-<div class="image-container left-image"></div>
-<div class="central-container">
-    <img class="imgpython" src="{% static 'images/giphy.gif' %}" alt="Python GIF">
-    <h1 class="system-title">Sistema de Chamados Django</h1>
-    
-    <h2>Registre-se</h2>
-    <form method="post" class="register-form">
-        {% csrf_token %}
-        {{ form.as_p }}
-        <button type="submit" class="botaologin">Registrar</button>
-    </form>
-    
-    {% if messages %}
-    <ul class="messages">
-        {% for message in messages %}
-        <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
-        {% endfor %}
-    </ul>
-    {% endif %}
+<div class="main-container">
+    <div class="image-container left-image"></div>
+    <div class="central-container">
+        <div class="content-wrapper">
+            <img class="imgpython" src="{% static 'images/giphy.gif' %}" alt="Python GIF">
+            <h1 class="system-title">Sistema de Registros de filmes Tarantino</h1>
+            
+            <h2>Registre-se</h2>
+            <form method="post" class="register-form">
+                {% csrf_token %}
+                {{ form.as_p }}
+                <button type="submit" class="botaologin">Registrar</button>
+            </form>
+            
+            {% if messages %}
+            <ul class="messages">
+                {% for message in messages %}
+                <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+                {% endfor %}
+            </ul>
+            {% endif %}
 
-    <p class="register-link">J? tem uma conta? <a href="/login">Login</a></p>
+            <p class="register-link">Já tem uma conta? <a href="/login">Login</a></p>
+        </div>
+    </div>
+    <div class="image-container right-image"></div>
 </div>
-<div class="image-container right-image"></div>
 {% endblock %}
-
-
 
 {% block extra_css %}
 <style>
+    body, html {
+        margin: 0;
+        padding: 0;
+        height: 100%;
+        font-family: Arial, sans-serif;
+    }
+
     .main-container {
         display: flex;
         width: 100%;
-        height: 100vh;
+        min-height: 100vh;
     }
 
     .image-container {
         flex: 1;
         background-size: cover;
         background-position: center;
+        display: none;
     }
 
     .left-image {
@@ -56,11 +66,17 @@
     .central-container {
         flex: 1;
         display: flex;
-        flex-direction: column;
         justify-content: center;
         align-items: center;
         background-color: rgba(0, 0, 0, 0.8);
         padding: 20px;
+        box-sizing: border-box;
+    }
+
+    .content-wrapper {
+        max-width: 400px;
+        width: 100%;
+        text-align: center;
     }
 
     .form-group {
@@ -68,23 +84,22 @@
         margin-bottom: 15px;
     }
 
-    .inputlogin {
+    .inputlogin, .botaologin {
         width: 100%;
         padding: 10px;
         border: 1px solid #555;
         background-color: #444;
         color: #fff;
         border-radius: 5px;
+        box-sizing: border-box;
     }
 
     .botaologin {
-        width: 100%;
-        padding: 10px;
         background-color: #ffcc00;
         color: #000;
         border: none;
-        border-radius: 5px;
         cursor: pointer;
+        transition: background-color 0.3s;
     }
 
     .botaologin:hover {
@@ -115,6 +130,31 @@
     .system-title {
         font-size: 24px;
         margin-bottom: 20px;
+        color: #ffcc00;
+    }
+
+    @media (min-width: 768px) {
+        .image-container {
+            display: block;
+        }
+    }
+
+    @media (max-width: 767px) {
+        .main-container {
+            flex-direction: column;
+        }
+
+        .central-container {
+            padding: 10px;
+        }
+
+        .content-wrapper {
+            padding: 10px;
+        }
+
+        .system-title {
+            font-size: 20px;
+        }
     }
 </style>
 {% endblock %}

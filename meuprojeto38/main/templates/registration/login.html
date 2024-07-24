@@ -1,15 +1,15 @@
 {% extends "base.html" %}
 {% load static %}
 
-{% block title %}Login - Sistema de Registros de filmes Tarantino{% endblock %}
+{% block title %}Login -  Sistema de Registros de filmes Tarantino{% endblock %}
 
 {% block content %}
 <div class="image-container left-image"></div>
 <div class="central-container">
     <img class="imgpython" src="{% static 'images/giphy.gif' %}" alt="Python GIF">
-    <h1 class="system-title">Bem-vindo ao Sistema de Registros de filmes Tarantino</h1>
+    <h1 class="system-title"> Sistema de Registros de filmes Tarantino</h1>
 
-    <form method="POST" action="/login">
+    <form method="POST" action="/login/">
         {% csrf_token %}
         <div class="form-group">
             <input class="inputlogin" type="text" name="username" placeholder="Nome de usuário" required>

@@ -26,6 +26,9 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 
+APPEND_SLASH = False
+
+
 # Application definition
 INSTALLED_APPS = [
     'django.contrib.admin',
@@ -134,8 +137,8 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 # meuprojeto38/meuprojeto38/settings.py
 
-LOGIN_URL = 'main:login'
-LOGIN_REDIRECT_URL = 'main:home'
-LOGOUT_REDIRECT_URL = 'main:home'
+LOGIN_URL = 'login'
+LOGIN_REDIRECT_URL = 'home'
+LOGOUT_REDIRECT_URL = 'home'
 
 
