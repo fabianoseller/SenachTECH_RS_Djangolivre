@@ -1,176 +1,104 @@
-{% comment %} {% extends "base.html" %}
-{% load static %}
-
-{% block title %}Login - Sistema de Chamados{% endblock %}
-
-{% block content %}
-<div class="image-container left-image"></div>
-<div class="central-container">
-    <img class="imgpython" src="{% static 'images/giphy.gif' %}" alt="Python GIF">
-    <h1 class="system-title">Sistema de Chamados Django</h1>
-
-    <form method="POST" action="{login' %}">
-        {% csrf_token %}
-        <div class="form-group">
-            <input class="inputlogin" type="text" name="username" placeholder="Nome de usuário" required>
-        </div>
-        <div class="form-group">
-            <input class="inputlogin" type="password" name="password" placeholder="Senha" required>
-        </div>
-        <button type="submit" class="botaologin">Entrar</button>
-    </form>
-
-    {% if messages %}
-    <div class="msg-alertas">
-        {% for message in messages %}
-        <span class="ms {% if message.tags %}{{ message.tags }}{% endif %}">
-            {{ message }}
-        </span>
-        {% endfor %}
-    </div>
-    {% endif %}
-
-    <p class="register-link">Não tem uma conta? <a href="{% url 'main:register' %}">Registre-se</a></p>
-</div>
-<div class="image-container right-image"></div>
-{% endblock %}
-
-{% block extra_css %}
-<style>
-    .main-container {
-        display: flex;
-        width: 100%;
-        height: 100vh;
-    }
-
-    .image-container {
-        flex: 1;
-        background-size: cover;
-        background-position: center;
-    }
-
-    .left-image {
-        background-image: url("{% static 'images/pulp-fiction.jpg' %}");
-    }
-
-    .right-image {
-        background-image: url("{% static 'images/pulp-fiction.jpg' %}");
-    }
-
-    .central-container {
-        flex: 1;
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-        background-color: rgba(0, 0, 0, 0.8);
-        padding: 20px;
-    }
-
-    .form-group {
-        width: 100%;
-        margin-bottom: 15px;
-    }
-
-    .inputlogin {
-        width: 100%;
-        padding: 10px;
-        border: 1px solid #555;
-        background-color: #444;
-        color: #fff;
-        border-radius: 5px;
-    }
-
-    .botaologin {
-        width: 100%;
-        padding: 10px;
-        background-color: #ffcc00;
-        color: #000;
-        border: none;
-        border-radius: 5px;
-        cursor: pointer;
-    }
-
-    .botaologin:hover {
-        background-color: #e6b800;
-    }
-</style>
-{% endblock %} {% endcomment %}
-
-
-<!-- meuprojeto38/main/templates/main/login.html -->
 {% extends "base.html" %}
 {% load static %}
 
-{% block title %}Login - Sistema de Chamados{% endblock %}
+{% block title %}Login - Sistema de Registros de filmes Tarantino{% endblock %}
 
 {% block content %}
-<div class="image-container left-image"></div>
-<div class="central-container">
-    <img class="imgpython" src="{% static 'images/giphy.gif' %}" alt="Python GIF">
-    <h1 class="system-title">Sistema de Chamados Django</h1>
-
-    <form method="POST" action="/login/"> 
-        {% csrf_token %}
-        <div class="form-group">
-            <input class="inputlogin" type="text" name="username" placeholder="Nome de usuário" required>
+<div class="main-container">
+    <div class="central-container">
+        <h1 class="system-title">Login</h1>
+        
+        {% if messages %}
+        <div class="messages">
+            {% for message in messages %}
+            <div class="message {% if message.tags %}{{ message.tags }}{% endif %}">
+                {{ message }}
+            </div>
+            {% endfor %}
         </div>
-        <div class="form-group">
-            <input class="inputlogin" type="password" name="password" placeholder="Senha" required>
-        </div>
-        <button type="submit" class="botaologin">Entrar</button>
-    </form>
+        {% endif %}
 
-    {% if messages %}
-    <div class="msg-alertas">
-        {% for message in messages %}
-        <span class="ms {% if message.tags %}{{ message.tags }}{% endif %}">
-            {{ message }}
-        </span>
-        {% endfor %}
+        <form method="post" action="{% url 'main:login' %}" class="login-form">
+            {% csrf_token %}
+            <div class="form-group">
+                <label for="username">Nome de usuário:</label>
+                <input type="text" name="username" id="username" required class="inputlogin">
+            </div>
+            <div class="form-group">
+                <label for="password">Senha:</label>
+                <input type="password" name="password" id="password" required class="inputlogin">
+            </div>
+            <button type="submit" class="btn btn-login">Entrar</button>
+        </form>
+        
+        <p class="register-link">Não tem uma conta? <a href="{% url 'main:register' %}">Registre-se</a></p>
     </div>
-    {% endif %}
-
-    <p class="register-link">Não tem uma conta? <a href="{% url 'main:register' %}">Registre-se</a></p>
 </div>
-<div class="image-container right-image"></div>
 {% endblock %}
 
 {% block extra_css %}
 <style>
+    body, html {
+        margin: 0;
+        padding: 0;
+        height: 100%;
+        font-family: Arial, sans-serif;
+        background-color: #2c2c2c;
+        color: #fff;
+    }
+
     .main-container {
         display: flex;
-        width: 100%;
-        height: 100vh;
-    }
-
-    .image-container {
-        flex: 1;
-        background-size: cover;
-        background-position: center;
-    }
-
-    .left-image {
-        background-image: url("{% static 'images/pulp-fiction.jpg' %}");
-    }
-
-    .right-image {
-        background-image: url("{% static 'images/pulp-fiction.jpg' %}");
+        justify-content: center;
+        align-items: center;
+        min-height: 100vh;
     }
 
     .central-container {
-        flex: 1;
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
         background-color: rgba(0, 0, 0, 0.8);
-        padding: 20px;
+        padding: 30px;
+        border-radius: 10px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+        width: 100%;
+        max-width: 400px;
+        text-align: center;
+    }
+
+    .system-title {
+        color: #ffcc00;
+        margin-bottom: 20px;
+        font-size: 24px;
+    }
+
+    .messages {
+        margin-bottom: 20px;
+    }
+
+    .message {
+        padding: 10px;
+        border-radius: 5px;
+        margin-bottom: 10px;
+    }
+
+    .message.success {
+        background-color: #4CAF50;
+        color: white;
+    }
+
+    .message.error {
+        background-color: #f44336;
+        color: white;
     }
 
     .form-group {
-        width: 100%;
         margin-bottom: 15px;
+        text-align: left;
+    }
+
+    .form-group label {
+        display: block;
+        margin-bottom: 5px;
+        color: #ffcc00;
     }
 
     .inputlogin {
@@ -182,7 +110,7 @@
         border-radius: 5px;
     }
 
-    .botaologin {
+    .btn-login {
         width: 100%;
         padding: 10px;
         background-color: #ffcc00;
@@ -190,10 +118,26 @@
         border: none;
         border-radius: 5px;
         cursor: pointer;
+        font-weight: bold;
+        transition: background-color 0.3s;
     }
 
-    .botaologin:hover {
+    .btn-login:hover {
         background-color: #e6b800;
+    }
+
+    .register-link {
+        margin-top: 20px;
+        color: #fff;
+    }
+
+    .register-link a {
+        color: #ffcc00;
+        text-decoration: none;
+    }
+
+    .register-link a:hover {
+        text-decoration: underline;
     }
 </style>
 {% endblock %}

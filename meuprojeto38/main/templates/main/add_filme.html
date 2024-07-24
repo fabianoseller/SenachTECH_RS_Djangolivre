@@ -1,31 +1,46 @@
-<!-- meuprojeto38/main/templates/main/add_filme.html -->
 {% extends "base.html" %}
 {% load static %}
 
-{% block title %}Adicionar Filme - Sistema de Chamados{% endblock %}
+{% block title %}Adicionar Filme - Sistema de Registros de filmes Tarantino{% endblock %}
 
 {% block content %}
-<div class="image-container left-image"></div>
-<div class="central-container">
-    <h1 class="system-title">Adicionar Filme</h1>
+<div class="main-container">
+    <div class="image-container left-image"></div>
+    <div class="central-container">
+        <h1 class="system-title">Adicionar Filme</h1>
 
-    <form method="POST" name="add_filme_form">
-        {% csrf_token %}
-        {{ form.as_p }}
-        <button type="submit" class="btn">Adicionar Filme</button>
-    </form>
+        <form method="POST" class="add-filme-form">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit" class="btn">Adicionar Filme</button>
+        </form>
 
-    {% if messages %}
-    <div class="msg-alertas">
-        {% for message in messages %}
-        <span class="ms {% if message.tags %}{{ message.tags }}{% endif %}">
-            {{ message }}
-        </span>
-        {% endfor %}
+        {% if messages %}
+        <div class="msg-alertas">
+            {% for message in messages %}
+            <span class="ms {% if message.tags %}{{ message.tags }}{% endif %}">
+                {{ message }}
+            </span>
+            {% endfor %}
+        </div>
+        {% endif %}
+
+        <h2 class="filmes-title">Filmes Adicionados</h2>
+        <div class="filmes-grid">
+            {% for filme in filmes %}
+            <div class="filme-card">
+                <h3>{{ filme.nome }}</h3>
+                <p><strong>Ano:</strong> {{ filme.ano_lancamento }}</p>
+                <p><strong>Diretor:</strong> {{ filme.diretor }}</p>
+                <p class="sinopse"><strong>Sinopse:</strong> {{ filme.sinopse|truncatechars:100 }}</p>
+            </div>
+            {% empty %}
+            <p>Nenhum filme adicionado ainda.</p>
+            {% endfor %}
+        </div>
     </div>
-    {% endif %}
+    <div class="image-container right-image"></div>
 </div>
-<div class="image-container right-image"></div>
 {% endblock %}
 
 {% block extra_css %}
@@ -41,7 +56,7 @@
     .main-container {
         display: flex;
         width: 100%;
-        height: 100vh;
+        min-height: 100vh;
     }
 
     .image-container {
@@ -59,39 +74,42 @@
     }
 
     .central-container {
-        flex: 1;
+        flex: 2;
         display: flex;
         flex-direction: column;
-        justify-content: center;
+        justify-content: flex-start;
         align-items: center;
         background-color: rgba(0, 0, 0, 0.8);
         padding: 20px;
+        overflow-y: auto;
     }
 
-    .system-title {
+    .system-title, .filmes-title {
         font-size: 24px;
         margin-bottom: 20px;
         color: #ffcc00;
+        text-align: center;
     }
 
-    form {
+    .add-filme-form {
         width: 100%;
         max-width: 400px;
+        margin-bottom: 20px;
     }
 
-    form p {
+    .add-filme-form p {
         margin-bottom: 15px;
     }
 
-    form label {
+    .add-filme-form label {
         display: block;
         margin-bottom: 5px;
         color: #ffcc00;
     }
 
-    form input[type="text"],
-    form input[type="number"],
-    form textarea {
+    .add-filme-form input[type="text"],
+    .add-filme-form input[type="number"],
+    .add-filme-form textarea {
         width: 100%;
         padding: 10px;
         border: 1px solid #555;
@@ -108,6 +126,7 @@
         border-radius: 5px;
         cursor: pointer;
         font-size: 16px;
+        width: 100%;
     }
 
     .btn:hover {
@@ -116,6 +135,8 @@
 
     .msg-alertas {
         margin-top: 20px;
+        width: 100%;
+        max-width: 400px;
     }
 
     .ms {
@@ -123,6 +144,7 @@
         padding: 10px;
         margin-bottom: 10px;
         border-radius: 5px;
+        text-align: center;
     }
 
     .ms.error {
@@ -133,6 +155,53 @@
     .ms.success {
         background-color: #d4edda;
         color: #155724;
+    }
+
+    .filmes-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+        gap: 20px;
+        width: 100%;
+        max-width: 1200px;
+        margin-top: 20px;
+    }
+
+    .filme-card {
+        background-color: #444;
+        padding: 15px;
+        border-radius: 5px;
+        box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+    }
+
+    .filme-card h3 {
+        color: #ffcc00;
+        margin-bottom: 10px;
+    }
+
+    .filme-card p {
+        margin-bottom: 5px;
+    }
+
+    .filme-card .sinopse {
+        font-style: italic;
+    }
+
+    @media (max-width: 768px) {
+        .main-container {
+            flex-direction: column;
+        }
+
+        .image-container {
+            display: none;
+        }
+
+        .central-container {
+            padding: 10px;
+        }
+
+        .filmes-grid {
+            grid-template-columns: 1fr;
+        }
     }
 </style>
 {% endblock %}

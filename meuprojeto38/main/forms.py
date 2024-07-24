@@ -13,7 +13,7 @@ class UserRegisterForm(UserCreationForm):
 class FilmeForm(forms.ModelForm):
     class Meta:
         model = Filme
-        fields = ['nome', 'ano_lancamento', 'onde_assistir', 'elenco']
+        fields = ['nome', 'ano_lancamento', 'onde_assistir', 'elenco', 'diretor', 'sinopse']
         widgets = {
             'nome': forms.TextInput(attrs={'class': 'form-control'}),
             'ano_lancamento': forms.NumberInput(attrs={'class': 'form-control'}),

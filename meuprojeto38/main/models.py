@@ -7,7 +7,9 @@ class Filme(models.Model):
     ano_lancamento = models.IntegerField(_("Ano de Lançamento"))
     onde_assistir = models.CharField(_("Onde Assistir"), max_length=100)
     elenco = models.TextField(_("Elenco"))
-
+    diretor = models.CharField(_("Diretor"), max_length=100, default='Desconhecido')
+    sinopse = models.TextField(_("Sinopse"), max_length=300, default='Desconhecido')
+    
     class Meta:
         verbose_name = _("Filme")
         verbose_name_plural = _("Filmes")
@@ -34,6 +36,7 @@ class Cadastro(models.Model):
     titulo = models.CharField(_("Título"), max_length=100)
     descricao = models.TextField(_("Descrição"))
     data_criacao = models.DateTimeField(_("Data de Criação"), auto_now_add=True)
+    filme = models.ForeignKey(Filme, on_delete=models.CASCADE, null=True, blank=True)  # Permitir valores nulos temporariamente
 
     class Meta:
         verbose_name = _("Cadastro")

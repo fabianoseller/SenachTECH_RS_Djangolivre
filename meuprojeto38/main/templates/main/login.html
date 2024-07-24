@@ -1,74 +1,117 @@
 {% extends "base.html" %}
 {% load static %}
 
-{% block title %}Login -  Sistema de Registros de filmes Tarantino{% endblock %}
+{% block title %}Login - Sistema de Registros de filmes Tarantino{% endblock %}
 
 {% block content %}
-<div class="image-container left-image"></div>
-<div class="central-container">
-    <img class="imgpython" src="{% static 'images/giphy.gif' %}" alt="Python GIF">
-    <h1 class="system-title"> Sistema de Registros de filmes Tarantino</h1>
-
-    <form method="POST" action="/login/">
-        {% csrf_token %}
-        <div class="form-group">
-            <input class="inputlogin" type="text" name="username" placeholder="Nome de usuário" required>
+<div class="main-container">
+    <div class="central-container">
+        <h1 class="system-title">Login</h1>
+        
+        {% if messages %}
+        <div class="messages">
+            {% for message in messages %}
+            <div class="message {% if message.tags %}{{ message.tags }}{% endif %}">
+                {{ message }}
+            </div>
+            {% endfor %}
         </div>
-        <div class="form-group">
-            <input class="inputlogin" type="password" name="password" placeholder="Senha" required>
-        </div>
-        <button type="submit" class="botaologin">Entrar</button>
-    </form>
+        {% endif %}
 
-    {% if messages %}
-    <div class="msg-alertas">
-        {% for message in messages %}
-        <span class="ms {% if message.tags %}{{ message.tags }}{% endif %}">
-            {{ message }}
-        </span>
-        {% endfor %}
+        <form method="post" action="login" class="login-form">
+            {% csrf_token %}
+            <div class="form-group">
+                <label for="username">Nome de usuário:</label>
+                <input type="text" name="username" id="username" required>
+            </div>
+            <div class="form-group">
+                <label for="password">Senha:</label>
+                <input type="password" name="password" id="password" required>
+            </div>
+            <button type="submit" class="btn btn-login">Entrar</button>
+        </form>
+        
+        <p class="register-link">Não tem uma conta? <a href="{% url 'main:register' %}">Registre-se</a></p>
     </div>
-    {% endif %}
-
-    <p class="register-link">Não tem uma conta? <a href="/register">Registre-se</a></p>
 </div>
-<div class="image-container right-image"></div>
 {% endblock %}
 
 {% block extra_css %}
 <style>
+    /* Estilos CSS aqui */
+</style>
+{% endblock %}
+
+
+{% block extra_css %}
+<style>
+    body, html {
+        margin: 0;
+        padding: 0;
+        height: 100%;
+    }
+
     .main-container {
         display: flex;
-        width: 100%;
-        height: 100vh;
+        flex-direction: column;
+        min-height: 100vh;
+    }
+
+    .images-row {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
     }
 
     .image-container {
         flex: 1;
+        min-width: 200px;
+        height: 20vh; /* Altura reduzida para melhor ajuste */
         background-size: cover;
         background-position: center;
+        margin: 5px; /* Espaçamento entre as imagens */
     }
 
     .left-image {
-        background-image: url("{% static 'images/pulp-fiction.jpg' %}");
+        background-image: url("{% static 'images/pulp-fiction-bg.jpg' %}");
     }
 
     .right-image {
-        background-image: url("{% static 'images/pulp-fiction.jpg' %}");
+        background-image: url("{% static 'images/giphy.gif' %}");
+    }
+
+    .dek-image {
+        background-image: url("{% static 'images/dek.jpg' %}");
+    }
+
+    .crepuscule-image {
+        background-image: url("{% static 'images/du-crepuscule-a-l-aube-g1c32b.jpg' %}");
     }
 
     .central-container {
         flex: 1;
         display: flex;
-        flex-direction: column;
         justify-content: center;
         align-items: center;
-        background-color: rgba(0, 0, 0, 0.8);
         padding: 20px;
     }
 
-    .form-group {
+    .login-form {
+        background-color: rgba(0, 0, 0, 0.8);
+        padding: 30px;
+        border-radius: 10px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
         width: 100%;
+        max-width: 300px;
+    }
+
+    .system-title {
+        color: #ffcc00;
+        text-align: center;
+        margin-bottom: 20px;
+    }
+
+    .form-group {
         margin-bottom: 15px;
     }
 
@@ -93,6 +136,27 @@
 
     .botaologin:hover {
         background-color: #e6b800;
+    }
+
+    .msg-alertas {
+        margin-top: 15px;
+        color: #ffcc00;
+    }
+
+    .register-link {
+        margin-top: 20px;
+        color: #fff;
+        text-align: center;
+    }
+
+    .register-link a {
+        color: #ffcc00;
+    }
+
+    @media (max-width: 768px) {
+        .image-container {
+            height: 15vh; /* Altura ainda menor em telas pequenas */
+        }
     }
 </style>
 {% endblock %}

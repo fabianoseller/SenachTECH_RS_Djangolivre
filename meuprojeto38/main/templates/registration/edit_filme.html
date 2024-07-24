@@ -1,15 +1,15 @@
 {% extends "base.html" %}
 {% load static %}
 
-{% block title %}Registre-se - Sistema de Registros de filmes Tarantino{% endblock %}
+{% block title %}Editar Filme - Sistema de Registros de filmes Tarantino{% endblock %}
 
 {% block content %}
 <div class="main-container">
     <div class="image-container left-image"></div>
     <div class="central-container">
-        <div class="form-container">
-            <h1 class="system-title">Registre-se</h1>
-            <form method="post" novalidate>
+        <div class="edit-form">
+            <h1 class="system-title">Editar Filme</h1>
+            <form method="post">
                 {% csrf_token %}
                 {% for field in form %}
                     <div class="form-group">
@@ -24,20 +24,9 @@
                         {% endif %}
                     </div>
                 {% endfor %}
-                <button type="submit" class="btn">Registrar</button>
+                <button type="submit" class="btn btn-edit">Salvar Alterações</button>
             </form>
-
-            {% if messages %}
-            <div class="msg-alertas">
-                {% for message in messages %}
-                <span class="ms {% if message.tags %}{{ message.tags }}{% endif %}">
-                    {{ message }}
-                </span>
-                {% endfor %}
-            </div>
-            {% endif %}
-
-            <p class="login-link">Já tem uma conta? <a href="login">Login</a></p>
+            <a href="{% url 'main:home' %}" class="btn btn-back">Voltar</a>
         </div>
     </div>
     <div class="image-container right-image"></div>
@@ -83,83 +72,73 @@
         padding: 20px;
     }
 
-    .form-container {
+    .edit-form {
+        background-color: #444;
+        padding: 30px;
+        border-radius: 10px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
         width: 100%;
-        max-width: 400px;
+        max-width: 500px;
     }
 
     .system-title {
-        font-size: 24px;
-        margin-bottom: 20px;
         color: #ffcc00;
         text-align: center;
+        margin-bottom: 20px;
+        font-size: 24px;
     }
 
     .form-group {
         margin-bottom: 15px;
     }
 
-    form label {
+    .form-group label {
         display: block;
         margin-bottom: 5px;
         color: #ffcc00;
     }
 
-    form input[type="text"],
-    form input[type="password"],
-    form input[type="email"] {
+    .form-group input[type="text"],
+    .form-group input[type="number"],
+    .form-group textarea {
         width: 100%;
         padding: 10px;
         border: 1px solid #555;
-        background-color: #444;
+        background-color: #333;
         color: #fff;
         border-radius: 5px;
     }
 
     .btn {
-        width: 100%;
-        background-color: #ffcc00;
-        color: #000;
+        display: inline-block;
         padding: 10px 15px;
         border: none;
         border-radius: 5px;
         cursor: pointer;
         font-size: 16px;
-    }
-
-    .btn:hover {
-        background-color: #e6b800;
-    }
-
-    .msg-alertas {
-        margin-top: 20px;
-    }
-
-    .ms {
-        display: block;
-        padding: 10px;
-        margin-bottom: 10px;
-        border-radius: 5px;
-    }
-
-    .ms.error {
-        background-color: #ffcccb;
-        color: #721c24;
-    }
-
-    .ms.success {
-        background-color: #d4edda;
-        color: #155724;
-    }
-
-    .login-link {
-        margin-top: 20px;
-        color: #fff;
+        text-decoration: none;
         text-align: center;
     }
 
-    .login-link a {
-        color: #ffcc00;
+    .btn-edit {
+        background-color: #4CAF50;
+        color: white;
+        width: 100%;
+    }
+
+    .btn-edit:hover {
+        background-color: #45a049;
+    }
+
+    .btn-back {
+        background-color: #ffcc00;
+        color: #000;
+        margin-top: 10px;
+        width: 100%;
+    }
+
+    .btn-back:hover {
+        background-color: #e6b800;
     }
 
     .error-message {
@@ -179,6 +158,10 @@
 
         .central-container {
             padding: 10px;
+        }
+
+        .edit-form {
+            padding: 20px;
         }
     }
 </style>
