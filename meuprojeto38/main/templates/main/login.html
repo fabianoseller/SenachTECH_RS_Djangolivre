@@ -9,7 +9,7 @@
     <img class="imgpython" src="{% static 'images/giphy.gif' %}" alt="Python GIF">
     <h1 class="system-title">Sistema de Chamados Django</h1>
 
-    <form method="POST" action="{% url 'main:login' %}">
+    <form method="POST" action="/login">
         {% csrf_token %}
         <div class="form-group">
             <input class="inputlogin" type="text" name="username" placeholder="Nome de usuário" required>
@@ -30,7 +30,7 @@
     </div>
     {% endif %}
 
-    <p class="register-link">Não tem uma conta? <a href="{% url 'main:register' %}">Registre-se</a></p>
+    <p class="register-link">Não tem uma conta? <a href="/register">Registre-se</a></p>
 </div>
 <div class="image-container right-image"></div>
 {% endblock %}

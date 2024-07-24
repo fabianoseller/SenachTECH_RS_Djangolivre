@@ -7,7 +7,7 @@
 <div class="image-container left-image"></div>
 <div class="central-container">
     <img class="imgpython" src="{% static 'images/giphy.gif' %}" alt="Python GIF">
-    <h1 class="system-title">Sistema de Chamados Django</h1>
+    <h1 class="system-title">Sistema de Registros de filmes Tarantino</h1>
     
     <h2>Registre-se</h2>
     <form method="post" class="register-form">
@@ -24,7 +24,7 @@
     </ul>
     {% endif %}
 
-    <p class="register-link">Já tem uma conta? <a href="{% url 'main:login' %}">Login</a></p>
+    <p class="register-link">Já tem uma conta? <a href="/login">Login</a></p>
 </div>
 <div class="image-container right-image"></div>
 {% endblock %}
