@@ -184,7 +184,10 @@ def home_view(request):
     user_filmes = Cadastro.objects.filter(user=request.user).select_related('filme')
     return render(request, 'main/home.html', {'user_filmes': user_filmes})
 
-
+@login_required
+def home(request):
+    filmes = Filme.objects.filter(usuario=request.user)  # Assumindo que o campo no modelo Filme é 'usuario'
+    return render(request, 'main/home.html', {'filmes': filmes})
 
 @login_required
 def add_filme_view(request):
@@ -252,3 +255,26 @@ def delete_filme(request, filme_id):
         messages.success(request, "Exclusão realizada com sucesso!")
         return redirect('main:home')  # ou para a lista de filmes
     return redirect('main:edit_filme', filme_id=filme_id)
+
+@login_required
+def home_view(request):
+    user_filmes = Cadastro.objects.filter(user=request.user).select_related('filme')
+    return render(request, 'main/home.html', {'user_filmes': user_filmes})
+
+@login_required
+def add_filme_view(request):
+    if request.method == 'POST':
+        form = FilmeForm(request.POST)
+        if form.is_valid():
+            filme = form.save()
+            Cadastro.objects.create(user=request.user, filme=filme)
+            messages.success(request, 'Filme adicionado com sucesso!')
+            return redirect('main:home')
+    else:
+        form = FilmeForm()
+    
+    context = {
+        'form': form,
+    }
+    return render(request, 'main/add_filme.html', context)
+

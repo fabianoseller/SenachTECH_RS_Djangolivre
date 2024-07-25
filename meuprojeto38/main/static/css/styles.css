@@ -150,3 +150,11 @@ p.register-link {
     background-color: #d4edda;
     color: #155724;
 }
+
+.right-image {
+    background-image: url("{% static 'images/dek.gif' %}"); 
+}
+
+.register-link a {
+    color: #ffcc00; 
+}
