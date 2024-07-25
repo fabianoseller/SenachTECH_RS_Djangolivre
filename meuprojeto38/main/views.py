@@ -184,6 +184,8 @@ def home_view(request):
     user_filmes = Cadastro.objects.filter(user=request.user).select_related('filme')
     return render(request, 'main/home.html', {'user_filmes': user_filmes})
 
+
+
 @login_required
 def add_filme_view(request):
     if request.method == 'POST':
@@ -230,3 +232,23 @@ def logout_view(request):
     logout(request)
     messages.info(request, 'Você foi desconectado com sucesso.')
     return redirect('main:login')
+
+def edit_filme(request, filme_id):
+    filme = get_object_or_404(Filme, id=filme_id)
+    if request.method == 'POST':
+        form = FilmeForm(request.POST, instance=filme)
+        if form.is_valid():
+            form.save()
+            messages.success(request, "Alteração realizada com sucesso!")
+            return redirect('main:home')  # ou para a lista de filmes
+    else:
+        form = FilmeForm(instance=filme)
+    return render(request, 'edit_filme.html', {'form': form, 'filme': filme})
+
+def delete_filme(request, filme_id):
+    filme = get_object_or_404(Filme, id=filme_id)
+    if request.method == 'POST':
+        filme.delete()
+        messages.success(request, "Exclusão realizada com sucesso!")
+        return redirect('main:home')  # ou para a lista de filmes
+    return redirect('main:edit_filme', filme_id=filme_id)

@@ -11,7 +11,19 @@
 
         <form method="POST" class="add-filme-form">
             {% csrf_token %}
-            {{ form.as_p }}
+            {% for field in form %}
+                <div class="form-group">
+                    {{ field.label_tag }}
+                    {{ field }}
+                    {% if field.errors %}
+                        <div class="error-message">
+                            {% for error in field.errors %}
+                                {{ error }}
+                            {% endfor %}
+                        </div>
+                    {% endif %}
+                </div>
+            {% endfor %}
             <button type="submit" class="btn">Adicionar Filme</button>
         </form>
 
@@ -33,6 +45,7 @@
                 <p><strong>Ano:</strong> {{ filme.ano_lancamento }}</p>
                 <p><strong>Diretor:</strong> {{ filme.diretor }}</p>
                 <p class="sinopse"><strong>Sinopse:</strong> {{ filme.sinopse|truncatechars:100 }}</p>
+                <a href="{% url 'main:edit_filme' filme.id %}" class="btn btn-edit">Editar</a>
             </div>
             {% empty %}
             <p>Nenhum filme adicionado ainda.</p>
@@ -49,84 +62,91 @@
         background-color: #2c2c2c;
         color: #f5f5f5;
         font-family: 'Arial', sans-serif;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
         margin: 0;
-        padding: 0;
+        position: relative;
     }
 
     .main-container {
         display: flex;
         width: 100%;
-        min-height: 100vh;
+        height: 100%;
     }
 
     .image-container {
         flex: 1;
         background-size: cover;
         background-position: center;
+        opacity: 0.5;
     }
 
     .left-image {
-        background-image: url("{% static 'images/pulp-fiction.jpg' %}");
+        background: url('{% static "images/pulp-fiction.jpg" %}') no-repeat center center;
     }
 
     .right-image {
-        background-image: url("{% static 'images/pulp-fiction.jpg' %}");
+        background: url('{% static "images/pulp-fiction.jpg" %}') no-repeat center center;
     }
 
     .central-container {
-        flex: 2;
-        display: flex;
-        flex-direction: column;
-        justify-content: flex-start;
-        align-items: center;
         background-color: rgba(0, 0, 0, 0.8);
         padding: 20px;
+        border-radius: 10px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+        width: 600px;
+        text-align: center;
+        z-index: 2;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: flex-start;
         overflow-y: auto;
+        max-height: 90vh;
     }
 
-    .system-title, .filmes-title {
-        font-size: 24px;
-        margin-bottom: 20px;
+    h2, h1 {
         color: #ffcc00;
-        text-align: center;
+        margin-bottom: 20px;
     }
 
     .add-filme-form {
+        display: flex;
+        flex-direction: column;
         width: 100%;
-        max-width: 400px;
-        margin-bottom: 20px;
     }
 
-    .add-filme-form p {
+    .form-group {
         margin-bottom: 15px;
+        text-align: left;
     }
 
-    .add-filme-form label {
-        display: block;
+    label {
+        color: #a9a9a9;
         margin-bottom: 5px;
-        color: #ffcc00;
+        display: block;
     }
 
-    .add-filme-form input[type="text"],
-    .add-filme-form input[type="number"],
-    .add-filme-form textarea {
-        width: 100%;
-        padding: 10px;
-        border: 1px solid #555;
+    input, select, textarea {
         background-color: #444;
         color: #fff;
+        border: 1px solid #555;
+        padding: 10px;
         border-radius: 5px;
+        width: 100%;
+        box-sizing: border-box;
     }
 
     .btn {
         background-color: #ffcc00;
         color: #000;
-        padding: 10px 15px;
         border: none;
+        padding: 10px;
         border-radius: 5px;
         cursor: pointer;
-        font-size: 16px;
-        width: 100%;
+        margin-top: 10px;
     }
 
     .btn:hover {
@@ -134,9 +154,7 @@
     }
 
     .msg-alertas {
-        margin-top: 20px;
-        width: 100%;
-        max-width: 400px;
+        margin-top: 15px;
     }
 
     .ms {
@@ -144,7 +162,6 @@
         padding: 10px;
         margin-bottom: 10px;
         border-radius: 5px;
-        text-align: center;
     }
 
     .ms.error {
@@ -162,7 +179,6 @@
         grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
         gap: 20px;
         width: 100%;
-        max-width: 1200px;
         margin-top: 20px;
     }
 
@@ -186,6 +202,21 @@
         font-style: italic;
     }
 
+    .btn-edit {
+        background-color: #4CAF50;
+        color: white;
+        padding: 5px 10px;
+        border-radius: 3px;
+        text-decoration: none;
+        font-size: 14px;
+        margin-top: 10px;
+        display: inline-block;
+    }
+
+    .btn-edit:hover {
+        background-color: #45a049;
+    }
+
     @media (max-width: 768px) {
         .main-container {
             flex-direction: column;
@@ -196,11 +227,8 @@
         }
 
         .central-container {
-            padding: 10px;
-        }
-
-        .filmes-grid {
-            grid-template-columns: 1fr;
+            width: 90%;
+            max-height: none;
         }
     }
 </style>
