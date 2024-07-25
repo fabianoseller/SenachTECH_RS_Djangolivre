@@ -18,15 +18,15 @@
         </div>
         {% endif %}
 
-        <form method="post" action="login" class="login-form">
+        <form method="post" action="/login/" class="login-form">
             {% csrf_token %}
             <div class="form-group">
                 <label for="username">Nome de usuário:</label>
-                <input type="text" name="username" id="username" required>
+                <input type="text" name="username" id="username" required class="inputlogin">
             </div>
             <div class="form-group">
                 <label for="password">Senha:</label>
-                <input type="password" name="password" id="password" required>
+                <input type="password" name="password" id="password" required class="inputlogin">
             </div>
             <button type="submit" class="btn btn-login">Entrar</button>
         </form>
@@ -38,54 +38,32 @@
 
 {% block extra_css %}
 <style>
-    /* Estilos CSS aqui */
-</style>
-{% endblock %}
-
-
-{% block extra_css %}
-<style>
     body, html {
         margin: 0;
         padding: 0;
         height: 100%;
+        font-family: Arial, sans-serif;
     }
 
     .main-container {
         display: flex;
-        flex-direction: column;
+        width: 100%;
         min-height: 100vh;
-    }
-
-    .images-row {
-        display: flex;
-        flex-wrap: wrap;
-        justify-content: center;
     }
 
     .image-container {
         flex: 1;
-        min-width: 200px;
-        height: 20vh; /* Altura reduzida para melhor ajuste */
         background-size: cover;
         background-position: center;
-        margin: 5px; /* Espaçamento entre as imagens */
+        display: none;
     }
 
     .left-image {
-        background-image: url("{% static 'images/pulp-fiction-bg.jpg' %}");
+        background-image: url("{% static 'images/pulp-fiction.jpg' %}");
     }
 
     .right-image {
-        background-image: url("{% static 'images/giphy.gif' %}");
-    }
-
-    .dek-image {
-        background-image: url("{% static 'images/dek.jpg' %}");
-    }
-
-    .crepuscule-image {
-        background-image: url("{% static 'images/du-crepuscule-a-l-aube-g1c32b.jpg' %}");
+        background-image: url("{% static 'images/pulp-fiction.jpg' %}");
     }
 
     .central-container {
@@ -93,69 +71,92 @@
         display: flex;
         justify-content: center;
         align-items: center;
-        padding: 20px;
-    }
-
-    .login-form {
         background-color: rgba(0, 0, 0, 0.8);
-        padding: 30px;
-        border-radius: 10px;
-        box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
-        width: 100%;
-        max-width: 300px;
+        padding: 20px;
+        box-sizing: border-box;
     }
 
-    .system-title {
-        color: #ffcc00;
+    .content-wrapper {
+        max-width: 400px;
+        width: 100%;
         text-align: center;
-        margin-bottom: 20px;
     }
 
     .form-group {
+        width: 100%;
         margin-bottom: 15px;
     }
 
-    .inputlogin {
+    .inputlogin, .botaologin {
         width: 100%;
         padding: 10px;
         border: 1px solid #555;
         background-color: #444;
         color: #fff;
         border-radius: 5px;
+        box-sizing: border-box;
     }
 
     .botaologin {
-        width: 100%;
-        padding: 10px;
         background-color: #ffcc00;
         color: #000;
         border: none;
-        border-radius: 5px;
         cursor: pointer;
+        transition: background-color 0.3s;
     }
 
     .botaologin:hover {
         background-color: #e6b800;
     }
 
-    .msg-alertas {
-        margin-top: 15px;
-        color: #ffcc00;
-    }
-
     .register-link {
-        margin-top: 20px;
-        color: #fff;
-        text-align: center;
+        color: #a9a9a9;
+        margin-top: 15px;
     }
 
-    .register-link a {
+    .messages {
+        list-style-type: none;
+        padding: 0;
+    }
+
+    .messages li {
+        color: red;
+        margin-bottom: 10px;
+    }
+
+    .imgpython {
+        max-width: 100%;
+        height: auto;
+        margin-bottom: 20px;
+    }
+
+    .system-title {
+        font-size: 24px;
+        margin-bottom: 20px;
         color: #ffcc00;
     }
 
-    @media (max-width: 768px) {
+    @media (min-width: 768px) {
         .image-container {
-            height: 15vh; /* Altura ainda menor em telas pequenas */
+            display: block;
+        }
+    }
+
+    @media (max-width: 767px) {
+        .main-container {
+            flex-direction: column;
+        }
+
+        .central-container {
+            padding: 10px;
+        }
+
+        .content-wrapper {
+            padding: 10px;
+        }
+
+        .system-title {
+            font-size: 20px;
         }
     }
 </style>
