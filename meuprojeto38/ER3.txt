@@ -1,0 +1,35 @@
+Para criar o Modelo Físico do banco de dados para o Sistema de Registros de filmes Tarantino -SQL LITE
+
+-- Tabela de Usuários (built-in do Django)
+CREATE TABLE auth_user (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    password VARCHAR(128) NOT NULL,
+    last_login DATETIME,
+    is_superuser BOOLEAN NOT NULL,
+    username VARCHAR(150) NOT NULL UNIQUE,
+    first_name VARCHAR(30) NOT NULL,
+    last_name VARCHAR(150) NOT NULL,
+    email VARCHAR(254) NOT NULL,
+    is_staff BOOLEAN NOT NULL,
+    is_active BOOLEAN NOT NULL,
+    date_joined DATETIME NOT NULL
+);
+
+-- Tabela de Filmes
+CREATE TABLE filme (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    nome VARCHAR(255) NOT NULL,
+    ano_lancamento INTEGER NOT NULL,
+    diretor VARCHAR(255) NOT NULL,
+    sinopse TEXT
+);
+
+-- Tabela de Cadastro (relação entre Usuário e Filme)
+CREATE TABLE cadastro (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    user_id INTEGER NOT NULL,
+    filme_id INTEGER NOT NULL,
+    descricao TEXT,
+    FOREIGN KEY (user_id) REFERENCES auth_user (id),
+    FOREIGN KEY (filme_id) REFERENCES filme (id)
+);

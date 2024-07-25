@@ -1,6 +1,8 @@
 from django.db import models
 from django.contrib.auth.models import User
 from django.utils.translation import gettext_lazy as _
+from django.contrib.auth.models import User
+
 
 class Filme(models.Model):
     nome = models.CharField(_("Nome"), max_length=100)
@@ -58,3 +60,17 @@ class UserFilme(models.Model):
 
     def __str__(self):
         return f"{self.user.username} - {self.filme.nome}"
+    
+    
+from django.db import models
+from django.contrib.auth.models import User
+
+class Perfil(models.Model):
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
+    bio = models.TextField(blank=True)
+    data_nascimento = models.DateField(null=True, blank=True)
+    filmes_favoritos = models.ManyToManyField(Filme, related_name='favoritos', blank=True)
+    
+    def __str__(self):
+        return f'Perfil de {self.user.username}'
+

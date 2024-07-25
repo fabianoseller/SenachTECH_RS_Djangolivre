@@ -1,0 +1,219 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}<span class="highlight">Perfil - Sistema de Registros de filmes Tarantino</span>{% endblock %}
+
+{% block content %}
+<div class="main-container">
+    <div class="central-container">
+        <div class="profile-content">
+            <h1 class="system-title">Perfil de {{ user.username }}</h1>
+            <p><strong>Bio:</strong> {{ perfil.bio }}</p>
+            <p><strong>Data de Nascimento:</strong> {{ perfil.data_nascimento|default:"Não informada" }}</p>
+            
+            <h2 class="section-title">Filmes Favoritos</h2>
+            <ul>
+            {% for filme in perfil.filmes_favoritos.all %}
+                <li>{{ filme.nome }}</li>
+            {% empty %}
+                <li>Nenhum filme favorito ainda.</li>
+            {% endfor %}
+            </ul>
+            
+            <h2 class="section-title">Análise de Dados</h2>
+            <select id="data-analysis" onchange="showAnalysis()">
+                <option value="">Selecione uma análise</option>
+                <option value="total-filmes">Total de Filmes Cadastrados</option>
+                <option value="filmes-por-ano">Filmes por Ano</option>
+                <option value="diretores-favoritos">Diretores Favoritos</option>
+            </select>
+            
+            <div id="analysis-result"></div>
+        </div>
+    </div>
+    <div class="image-container right-image"></div>
+</div>
+
+<script>
+function showAnalysis() {
+    var analysis = document.getElementById("data-analysis").value;
+    var resultDiv = document.getElementById("analysis-result");
+    
+    if (analysis === "total-filmes") {
+        resultDiv.innerHTML = "Total de filmes cadastrados: {{ user_filmes.count }}";
+    } else if (analysis === "filmes-por-ano") {
+        var filmesporAno = {};
+        {% for cadastro in user_filmes %}
+        var ano = "{{ cadastro.filme.ano_lancamento }}";
+        filmesporAno[ano] = (filmesporAno[ano] || 0) + 1;
+        {% endfor %}
+        
+        var result = "Filmes por ano:<br>";
+        for (var ano in filmesporAno) {
+            result += ano + ": " + filmesporAno[ano] + "<br>";
+        }
+        resultDiv.innerHTML = result;
+    } else if (analysis === "diretores-favoritos") {
+        var diretores = {};
+        {% for cadastro in user_filmes %}
+        var diretor = "{{ cadastro.filme.diretor }}";
+        diretores[diretor] = (diretores[diretor] || 0) + 1;
+        {% endfor %}
+        
+        var result = "Diretores favoritos:<br>";
+        for (var diretor in diretores) {
+            result += diretor + ": " + diretores[diretor] + " filmes<br>";
+        }
+        resultDiv.innerHTML = result;
+    } else {
+        resultDiv.innerHTML = "";
+    }
+}
+</script>
+{% endblock %}
+
+{% block extra_css %}
+<style>
+    body {
+        background-color: #2c2c2c;
+        color: #f5f5f5;
+        font-family: 'Arial', sans-serif;
+        margin: 0;
+        padding: 0;
+    }
+
+    .main-container {
+        display: flex;
+        width: 100%;
+        min-height: 100vh;
+    }
+
+    .central-container {
+        flex: 2;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background-color: rgba(0, 0, 0, 0.8);
+        padding: 20px;
+    }
+
+    .profile-content {
+        max-width: 600px;
+        width: 100%;
+        text-align: center;
+    }
+
+    .system-title, .section-title {
+        color: #ffcc00;
+        font-weight: bold;
+    }
+
+    .system-title {
+        font-size: 24px;
+        margin-bottom: 20px;
+    }
+
+    .section-title {
+        font-size: 20px;
+        margin-bottom: 15px;
+    }
+
+    .profile-content p, .profile-content ul {
+        text-align: left;
+        margin-bottom: 15px;
+    }
+
+    .profile-content label {
+        display: block;
+        color: #ffcc00;
+        margin-bottom: 5px;
+    }
+
+    .profile-content input {
+        width: 100%;
+        padding: 10px;
+        border: 1px solid #555;
+        background-color: #444;
+        color: #fff;
+        border-radius: 5px;
+    }
+
+    .btn {
+        background-color: #ffcc00;
+        color: #000;
+        padding: 10px 15px;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        font-size: 16px;
+        width: 100%;
+    }
+
+    .btn:hover {
+        background-color: #e6b800;
+    }
+
+    .msg-alertas {
+        margin-top: 15px;
+    }
+
+    .ms {
+        display: block;
+        padding: 10px;
+        margin-bottom: 10px;
+        border-radius: 5px;
+        text-align: center;
+    }
+
+    .ms.error {
+        background-color: #ffcccb;
+        color: #721c24;
+    }
+
+    .ms.success {
+        background-color: #d4edda;
+        color: #155724;
+    }
+
+    .login-link {
+        color: #ffcc00;
+        margin-top: 15px;
+    }
+
+    .login-link a {
+        color: #ffcc00;
+        text-decoration: none;
+    }
+
+    .login-link a:hover {
+        text-decoration: underline;
+    }
+
+    .imgpython {
+        max-width: 100%;
+        height: auto;
+        margin-bottom: 20px;
+    }
+
+    .right-image {
+        background-image: url("{% static 'images/ttg.gif' %}");
+        background-size: 30%;
+        background-repeat: no-repeat;
+        background-position: center;
+    }
+
+    @media (max-width: 768px) {
+        .main-container {
+            flex-direction: column;
+        }
+
+        .image-container {
+            display: none;
+        }
+
+        .central-container {
+            padding: 10px;
+        }
+    }
+</style>
+{% endblock %}

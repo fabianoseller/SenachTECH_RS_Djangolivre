@@ -1,0 +1,14 @@
++-----------------+          +-----------------+          +-----------------+
+|     User        |          |     Cadastro    |          |      Filme      |
++-----------------+          +-----------------+          +-----------------+
+| id (PK)         |<---------| id (PK)         |--------->| id (PK)         |
+| username        |          | user_id (FK)    |          | nome            |
+| email           |          | filme_id (FK)   |          | ano_lancamento  |
+| password        |          | descricao       |          | diretor         |
+| first_name      |          +-----------------+          | sinopse         |
+| last_name       |                                       +-----------------+
+| is_staff        |
+| is_active       |
+| date_joined     |
+| last_login      |
++-----------------+

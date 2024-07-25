@@ -19,6 +19,10 @@
             <a href="register">Register</a>
         {% endif %}
     </nav>
+    <nav>
+        <a href="{% url 'main:profile' %}">Perfil</a>
+    </nav>
+
     <div class="main-container">
         {% block content %}
         {% endblock %}

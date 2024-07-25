@@ -1,0 +1,26 @@
+Diagrama de Sequência para o caso de uso "Adicionar Filme":
+
+Usuário                   Interface                 View                   Modelo
+   |                          |                       |                       |
+   | Clica em "Adicionar Filme"|                       |                       |
+   |-------------------------->|                       |                       |
+   |                          | Exibe formulário       |                       |
+   |                          |<------------------------|                       |
+   | Preenche o formulário    |                       |                       |
+   |-------------------------->|                       |                       |
+   |                          | Envia dados do filme   |                       |
+   |                          |----------------------->|                       |
+   |                          |                       | Valida dados          |
+   |                          |                       |-------------------|   |
+   |                          |                       | Cria novo filme   |   |
+   |                          |                       |------------------>|   |
+   |                          |                       |                   |   |
+   |                          |                       | Salva filme       |   |
+   |                          |                       |------------------>|   |
+   |                          |                       |                   |   |
+   |                          |                       | Confirma salvamento   |
+   |                          |                       |<------------------|   |
+   |                          | Exibe mensagem de     |                       |
+   |                          | sucesso               |                       |
+   |<--------------------------|                       |                       |
+   |                          |                       |                       |

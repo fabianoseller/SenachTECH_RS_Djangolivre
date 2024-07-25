@@ -151,7 +151,7 @@ from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 from django.urls import reverse
 from .forms import UserRegisterForm, FilmeForm
-from .models import Filme, Cadastro
+from .models import Filme, Cadastro, Perfil
 from django.contrib.auth.forms import UserCreationForm
 
 def login_view(request):
@@ -277,4 +277,17 @@ def add_filme_view(request):
         'form': form,
     }
     return render(request, 'main/add_filme.html', context)
+
+
+@login_required
+def profile_view(request):
+    perfil, created = Perfil.objects.get_or_create(user=request.user)
+    user_filmes = Cadastro.objects.filter(user=request.user).select_related('filme')
+    
+    context = {
+        'perfil': perfil,
+        'user_filmes': user_filmes,
+    }
+    return render(request, 'main/profile.html', context)
+
 
