@@ -36,7 +36,6 @@
             <p class="register-link">Não tem uma conta? <a href="{% url 'main:register' %}">Registre-se</a></p>
         </div>
     </div>
-    <div class="image-container right-image"></div>
 </div>
 {% endblock %}
 
@@ -60,14 +59,11 @@
         flex: 1;
         background-size: cover;
         background-position: center;
+        opacity: 0.5; /* 50% de transparência */
     }
 
     .left-image {
-        background-image: url("{% static 'images/pulp-fiction.jpg' %}");
-    }
-
-    .right-image {
-        background-image: url("{% static 'images/dek.gif' %}"); /* Imagem "dek.gif" ao lado direito */
+        background-image: url("{% static 'images/pulp-fiction-bg.jpg' %}"); /* Imagem "pulp-fiction-bg.jpg" ao lado esquerdo */
     }
 
     .central-container {
