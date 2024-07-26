@@ -6,6 +6,25 @@ from django.urls import reverse
 from .forms import UserRegisterForm, FilmeForm
 from .models import Filme, Cadastro, Perfil
 from django.db.models import Count
+from django.http import HttpResponseRedirect
+
+def register_view(request):
+    if request.method == 'POST':
+        form = UserRegisterForm(request.POST)
+        if form.is_valid():
+            form.save()
+            username = form.cleaned_data.get('username')
+            messages.success(request, f'Conta criada para {username}! Você pode fazer login agora.')
+            return HttpResponseRedirect(reverse('main:login'))
+        else:
+            for field in form:
+                for error in field.errors:
+                    messages.error(request, error)
+    else:
+        form = UserRegisterForm()
+    return render(request, 'main/register.html', {'form': form})
+
+
 
 def login_view(request):
     if request.method == 'POST':
@@ -20,17 +39,7 @@ def login_view(request):
             messages.error(request, 'Nome de usuário ou senha inválidos.')
     return render(request, 'main/login.html')
 
-def register_view(request):
-    if request.method == 'POST':
-        form = UserRegisterForm(request.POST)
-        if form.is_valid():
-            form.save()
-            username = form.cleaned_data.get('username')
-            messages.success(request, f'Conta criada para {username}! Você pode fazer login agora.')
-            return redirect('main:login')
-    else:
-        form = UserRegisterForm()
-    return render(request, 'main/register.html', {'form': form})
+
 
 @login_required
 def home_view(request):
@@ -43,9 +52,11 @@ def add_filme_view(request):
         form = FilmeForm(request.POST)
         if form.is_valid():
             filme = form.save()
-            Cadastro.objects.create(user=request.user, filme=filme)
+            Cadastro.objects.create(user=request.user, filme=filme, descricao=f"Filme lançado em {filme.ano_lancamento}")
+
             messages.success(request, 'Filme adicionado com sucesso!')
-            return redirect('main:home')
+
+            return redirect('main:add_filme')
     else:
         form = FilmeForm()
     
@@ -116,3 +127,13 @@ def profile_view(request):
     }
 
     return render(request, 'main/profile.html', context)
+
+
+
+# # antes  Cadastro.objects.create(user=request.user, filme=filme)
+
+#             messages.success(request, 'Filme adicionado com sucesso!')
+
+#             return redirect('main:home')
+
+#     else:

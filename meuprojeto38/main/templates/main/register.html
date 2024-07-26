@@ -18,12 +18,24 @@
                 <button type="submit" class="btn btn-register">Registrar</button>
             </form>
             
+            {% if form.errors %}
+            <div class="msg-alertas">
+                {% for field in form %}
+                    {% for error in field.errors %}
+                    <div class="ms error">
+                        {{ error }}
+                    </div>
+                    {% endfor %}
+                {% endfor %}
+            </div>
+            {% endif %}
+
             {% if messages %}
             <div class="msg-alertas">
                 {% for message in messages %}
-                <span class="ms {% if message.tags %}{{ message.tags }}{% endif %}">
+                <div class="ms {% if message.tags %}{{ message.tags }}{% endif %}">
                     {{ message }}
-                </span>
+                </div>
                 {% endfor %}
             </div>
             {% endif %}

@@ -1,29 +1,47 @@
 {% extends "base.html" %}
 {% load static %}
 
-{% block title %}Registre-se - Sistema de Registros de filmes Tarantino{% endblock %}
+{% block title %}<span class="highlight">Registre-se - Sistema de Registros de filmes Tarantino</span>{% endblock %}
 
 {% block content %}
 <div class="main-container">
     <div class="image-container left-image"></div>
     <div class="central-container">
-        <h1 class="system-title">Registre-se</h1>
-        <form method="post">
-            {% csrf_token %}
-            {{ form.as_p }}
-            <button type="submit" class="btn">Registrar</button>
-        </form>
+        <div class="content-wrapper">
+            <img class="imgpython" src="{% static 'images/giphy.gif' %}" alt="Python GIF">
+            <h1 class="system-title">Sistema de Registros de filmes Tarantino</h1>
+            
+            <h2 class="register-subtitle">Registre-se</h2>
+            <form method="post" class="register-form">
+                {% csrf_token %}
+                {{ form.as_p }}
+                <button type="submit" class="btn btn-register">Registrar</button>
+            </form>
+            
+            {% if form.errors %}
+            <div class="msg-alertas">
+                {% for field in form %}
+                    {% for error in field.errors %}
+                    <div class="ms error">
+                        {{ error }}
+                    </div>
+                    {% endfor %}
+                {% endfor %}
+            </div>
+            {% endif %}
 
-        {% if messages %}
-        <div class="msg-alertas">
-            {% for message in messages %}
-            <span class="ms {% if message.tags %}{{ message.tags }}{% endif %}">
-                {{ message }}
-            </span>
-            {% endfor %}
+            {% if messages %}
+            <div class="msg-alertas">
+                {% for message in messages %}
+                <div class="ms {% if message.tags %}{{ message.tags }}{% endif %}">
+                    {{ message }}
+                </div>
+                {% endfor %}
+            </div>
+            {% endif %}
+
+            <p class="login-link">Já tem uma conta? <a href="{% url 'main:login' %}">Login</a></p>
         </div>
-        {% endif %}
-        <p class="login-link">Já tem uma conta? <a href="/login">Login</a></p>
     </div>
     <div class="image-container right-image"></div>
 </div>
@@ -49,52 +67,59 @@
         flex: 1;
         background-size: cover;
         background-position: center;
+        opacity: 0.7;
     }
 
     .left-image {
-        background-image: url("{% static 'images/pulp-fiction.jpg' %}");
+        background-image: url("{% static 'images/dek.gif' %}");
     }
 
     .right-image {
-        background-image: url("{% static 'images/pulp-fiction.jpg' %}");
+        background-image: url("{% static 'images/du-crepuscule-a-l-aube-g1c32b.jpg' %}");
     }
 
     .central-container {
         flex: 2;
         display: flex;
-        flex-direction: column;
-        justify-content: flex-start;
+        justify-content: center;
         align-items: center;
         background-color: rgba(0, 0, 0, 0.8);
         padding: 20px;
-        overflow-y: auto;
+    }
+
+    .content-wrapper {
+        max-width: 400px;
+        width: 100%;
+        text-align: center;
+    }
+
+    .system-title, .register-subtitle {
+        color: #ffcc00;
+        font-weight: bold;
     }
 
     .system-title {
         font-size: 24px;
         margin-bottom: 20px;
-        color: #ffcc00;
     }
 
-    form {
-        width: 100%;
-        max-width: 400px;
-        margin-bottom: 20px;
-    }
-
-    form p {
+    .register-subtitle {
+        font-size: 20px;
         margin-bottom: 15px;
     }
 
-    form label {
-        display: block;
-        margin-bottom: 5px;
-        color: #ffcc00;
+    .register-form p {
+        text-align: left;
+        margin-bottom: 15px;
     }
 
-    form input[type="text"],
-    form input[type="password"],
-    form input[type="email"] {
+    .register-form label {
+        display: block;
+        color: #ffcc00;
+        margin-bottom: 5px;
+    }
+
+    .register-form input {
         width: 100%;
         padding: 10px;
         border: 1px solid #555;
@@ -111,6 +136,7 @@
         border-radius: 5px;
         cursor: pointer;
         font-size: 16px;
+        width: 100%;
     }
 
     .btn:hover {
@@ -118,7 +144,7 @@
     }
 
     .msg-alertas {
-        margin-top: 20px;
+        margin-top: 15px;
     }
 
     .ms {
@@ -126,6 +152,7 @@
         padding: 10px;
         margin-bottom: 10px;
         border-radius: 5px;
+        text-align: center;
     }
 
     .ms.error {
@@ -139,13 +166,37 @@
     }
 
     .login-link {
-        margin-top: 20px;
-        color: #fff;
-        text-align: center;
+        color: #ffcc00;
+        margin-top: 15px;
     }
 
     .login-link a {
         color: #ffcc00;
+        text-decoration: none;
+    }
+
+    .login-link a:hover {
+        text-decoration: underline;
+    }
+
+    .imgpython {
+        max-width: 100%;
+        height: auto;
+        margin-bottom: 20px;
+    }
+
+    @media (max-width: 768px) {
+        .main-container {
+            flex-direction: column;
+        }
+
+        .image-container {
+            display: none;
+        }
+
+        .central-container {
+            padding: 10px;
+        }
     }
 </style>
 {% endblock %}

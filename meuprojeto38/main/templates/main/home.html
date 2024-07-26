@@ -43,14 +43,13 @@
                 </div>
                 {% endfor %}
             {% else %}
-                <p class="no-filmes">Você ainda não adicionou nenhum filme. <a href="{% url 'main:add_filme' %}" class="btn btn-add">Cadastrar</a></p>
+                <p class="no-filmes">Você ainda não adicionou nenhum filme.</p>
             {% endif %}
         </div>
     </div>
     <div class="image-container right-image"></div>
 </div>
 {% endblock %}
-
 
 {% block extra_css %}
 <style>
@@ -60,6 +59,11 @@
         font-family: 'Arial', sans-serif;
         margin: 0;
         padding: 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        position: relative;
     }
 
     .main-container {
@@ -72,6 +76,7 @@
         flex: 1;
         background-size: cover;
         background-position: center;
+        background-repeat: no-repeat;
     }
 
     .left-image {
@@ -90,7 +95,10 @@
         align-items: center;
         background-color: rgba(0, 0, 0, 0.8);
         padding: 20px;
+        border-radius: 10px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
         overflow-y: auto;
+        max-height: 100vh;
     }
 
     .system-title {
@@ -203,7 +211,7 @@
 
     .no-filmes {
         text-align: center;
-        color: #888;
+        color: #ffcc00; /* Amarelo */
         font-style: italic;
     }
 

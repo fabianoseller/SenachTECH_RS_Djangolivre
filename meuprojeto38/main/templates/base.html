@@ -4,24 +4,114 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{% block title %}Sistema de Chamados Django{% endblock %}</title>
+    <title>{% block title %}Sistema de Registros de filmes Tarantino{% endblock %}</title>
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <style>
+        body {
+            background-color: #2c2c2c;
+            color: #f5f5f5;
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+
+        .navbar {
+            background-color: #1a1a1a;
+            padding: 10px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .navbar a {
+            color: #ffcc00; /* Amarelo */
+            text-decoration: none;
+            margin: 0 10px;
+            font-weight: bold;
+            font-size: 18px; /* Tamanho padrão para todos os links */
+        }
+
+        .navbar a:hover {
+            text-decoration: underline;
+        }
+
+        .container {
+            padding: 20px;
+        }
+
+        .footer {
+            background-color: #1a1a1a;
+            color: #ffcc00; /* Amarelo */
+            text-align: center;
+            padding: 10px;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+        }
+
+        h1, h2, h3, h4, h5, h6 {
+            color: #ffcc00; /* Amarelo */
+        }
+
+        .btn {
+            background-color: #ffcc00;
+            color: #000;
+            padding: 10px 15px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            text-align: center;
+            text-decoration: none;
+        }
+
+        .btn:hover {
+            background-color: #e6b800;
+        }
+
+        .msg-alertas {
+            margin-top: 15px;
+        }
+
+        .ms {
+            display: block;
+            padding: 10px;
+            margin-bottom: 10px;
+            border-radius: 5px;
+            text-align: center;
+        }
+
+        .ms.error {
+            background-color: #ffcccb;
+            color: #721c24;
+        }
+
+        .ms.success {
+            background-color: #d4edda;
+            color: #155724;
+        }
+    </style>
     {% block extra_css %}{% endblock %}
 </head>
 <body>
-    <nav>
-        <a href="/home">Home</a>
-        {% if user.is_authenticated %}
-            <a href="/logout">Logout</a>
-            <a href="/profile">Profile</a>
-        {% else %}
-            <a href="/login">Login</a>
-            <a href="/register">Register</a>
-        {% endif %}
+    <nav class="navbar">
+        <div class="logo">
+            <a href="{% url 'main:home' %}">Home</a>
+            {% if user.is_authenticated %}
+                <a href="{% url 'main:logout' %}">Logout</a>
+                <a href="{% url 'main:profile' %}">Perfil</a>
+            {% else %}
+                <a href="{% url 'main:login' %}">Login</a>
+                <a href="{% url 'main:register' %}">Registrar</a>
+            {% endif %}
+        </div>
     </nav>
-    <div class="main-container">
+    <div class="container main-container">
         {% block content %}
         {% endblock %}
+    </div>
+    <div class="footer">
+        <p>&copy; 2024 Sistema de Registros de Filmes Tarantino </p>
     </div>
     <script src="{% static 'js/main.js' %}"></script>
     {% block extra_js %}{% endblock %}

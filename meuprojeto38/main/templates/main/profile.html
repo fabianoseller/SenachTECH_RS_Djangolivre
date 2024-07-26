@@ -10,8 +10,6 @@
     <div class="central-container">
         <div class="profile-content">
             <h1 class="system-title">Perfil de {{ user.username }}</h1>
-            {% comment %} <p><strong>Bio:</strong> {{ perfil.bio }}</p>
-            <p><strong>Data de Nascimento:</strong> {{ perfil.data_nascimento|default:"Não informada" }}</p> {% endcomment %}
             
             <h2 class="section-title">Filmes Favoritos</h2>
             <ul>
@@ -55,9 +53,7 @@
             </div>
         </div>
     </div>
-    <div class="image-container right-image">
-        <img src="{% static 'images/ddd.jpg' %}" alt="TTG" class="right-image">
-    </div>
+    <div class="image-container right-image"></div>
 </div>
 {% endblock %}
 
@@ -78,12 +74,14 @@
     }
 
     .central-container {
-        flex: 2;
+        flex: 1;
         display: flex;
         justify-content: center;
-        align-items: center;
+        align-items: flex-start;
         background-color: rgba(0, 0, 0, 0.8);
         padding: 20px;
+        overflow-y: auto;
+        max-height: 100vh;
     }
 
     .profile-content {
@@ -118,7 +116,7 @@
         margin-bottom: 5px;
     }
 
-    .profile-content input {
+    .profile-content input, .profile-content select {
         width: 100%;
         padding: 10px;
         border: 1px solid #555;
@@ -142,58 +140,12 @@
         background-color: #e6b800;
     }
 
-    .msg-alertas {
-        margin-top: 15px;
-    }
-
-    .ms {
-        display: block;
-        padding: 10px;
-        margin-bottom: 10px;
-        border-radius: 5px;
-        text-align: center;
-    }
-
-    .ms.error {
-        background-color: #ffcccb;
-        color: #721c24;
-    }
-
-    .ms.success {
-        background-color: #d4edda;
-        color: #155724;
-    }
-
-    .login-link {
-        color: #ffcc00;
-        margin-top: 15px;
-    }
-
-    .login-link a {
-        color: #ffcc00;
-        text-decoration: none;
-    }
-
-    .login-link a:hover {
-        text-decoration: underline;
-    }
-
-    .imgpython {
-        max-width: 100%;
-        height: auto;
-        margin-bottom: 20px;
-    }
-
-    .right-image-container {
+    .image-container.right-image {
         flex: 1;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-    }
-
-    .right-image {
-        max-width: 30%;
-        height: auto;
+        background-image: url("{% static 'images/ddd.jpg' %}");
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
     }
 
     @media (max-width: 768px) {
@@ -201,12 +153,13 @@
             flex-direction: column;
         }
 
-        .image-container {
+        .image-container.right-image {
             display: none;
         }
 
         .central-container {
             padding: 10px;
+            max-height: none;
         }
     }
 </style>
