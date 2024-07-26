@@ -4,10 +4,12 @@ from django.conf import settings
 from django.conf.urls.static import static
 from main import views  # Certifique-se de que este import está correto
 from schema_graph.views import Schema
+from django.contrib.auth import views as auth_views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('login/', views.login_view, name='login'),
+    path('login/', auth_views.LoginView.as_view(), name='login'),
     path('register/', views.register_view, name='register'),
     path('', include('main.urls')),
     path('home/', views.home_view, name='home'),

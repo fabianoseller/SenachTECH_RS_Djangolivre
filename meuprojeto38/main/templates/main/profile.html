@@ -10,8 +10,8 @@
     <div class="central-container">
         <div class="profile-content">
             <h1 class="system-title">Perfil de {{ user.username }}</h1>
-            <p><strong>Bio:</strong> {{ perfil.bio }}</p>
-            <p><strong>Data de Nascimento:</strong> {{ perfil.data_nascimento|default:"Não informada" }}</p>
+            {% comment %} <p><strong>Bio:</strong> {{ perfil.bio }}</p>
+            <p><strong>Data de Nascimento:</strong> {{ perfil.data_nascimento|default:"Não informada" }}</p> {% endcomment %}
             
             <h2 class="section-title">Filmes Favoritos</h2>
             <ul>
@@ -55,7 +55,9 @@
             </div>
         </div>
     </div>
-    <div class="image-container right-image"></div>
+    <div class="image-container right-image">
+        <img src="{% static 'images/ddd.jpg' %}" alt="TTG" class="right-image">
+    </div>
 </div>
 {% endblock %}
 
@@ -182,11 +184,16 @@
         margin-bottom: 20px;
     }
 
+    .right-image-container {
+        flex: 1;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
     .right-image {
-        background-image: url("{% static 'images/ttg.gif' %}");
-        background-size: 30%;
-        background-repeat: no-repeat;
-        background-position: center;
+        max-width: 30%;
+        height: auto;
     }
 
     @media (max-width: 768px) {

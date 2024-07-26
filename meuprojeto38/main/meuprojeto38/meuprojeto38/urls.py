@@ -5,12 +5,13 @@ from django.conf.urls.static import static
 from django.contrib.auth import views as auth_views
 
 
+
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('main.urls', namespace='main')),  # Inclui as URLs do seu aplicativo principal com namespace 'main'
     path('accounts/', include('django.contrib.auth.urls')),  # Inclui as URLs de autenticação padrão do Django
-    path('login/', auth_views.LoginView.as_view(), name='login'),
-       
+   
+     
 
 ]
 

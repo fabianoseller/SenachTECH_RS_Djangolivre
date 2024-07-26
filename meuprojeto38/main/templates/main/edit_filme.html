@@ -5,17 +5,8 @@
 
 {% block content %}
 <div class="main-container">
-    <div class="sidebar">
-        <h2>Menu</h2>
-        <nav>
-            <ul>
-                <li><a href="{% url 'main:home' %}">Home</a></li>
-                <li><a href="{% url 'main:add_filme' %}">Adicionar Filme</a></li>
-                <li><a href="{% url 'main:logout' %}">Logout</a></li>
-            </ul>
-        </nav>
-    </div>
-    <div class="content">
+    <div class="image-container left-image"></div>
+    <div class="central-container">
         <h1 class="system-title">Editar Filme</h1>
 
         {% if messages %}
@@ -54,6 +45,9 @@
             <button type="submit" class="btn btn-delete">Excluir Filme</button>
         </form>
     </div>
+    <div class="image-container right-image">
+        <img src="{% static 'images/bastard.jpg' %}" alt="Bastard" class="bastard-image">
+    </div>
 </div>
 {% endblock %}
 
@@ -69,42 +63,39 @@
 
     .main-container {
         display: flex;
+        width: 100%;
         min-height: 100vh;
     }
 
-    .sidebar {
-        width: 200px;
-        background-color: #1a1a1a;
-        padding: 20px;
-    }
-
-    .sidebar h2 {
-        color: #ffcc00;
-        margin-bottom: 20px;
-    }
-
-    .sidebar ul {
-        list-style-type: none;
-        padding: 0;
-    }
-
-    .sidebar ul li {
-        margin-bottom: 10px;
-    }
-
-    .sidebar ul li a {
-        color: #f5f5f5;
-        text-decoration: none;
-    }
-
-    .sidebar ul li a:hover {
-        color: #ffcc00;
-    }
-
-    .content {
+    .image-container {
         flex: 1;
+        background-size: cover;
+        background-position: center;
+        opacity: 0.5;
+    }
+
+    .right-image {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .bastard-image {
+        max-width: 200%;
+        height: auto;
+    }
+
+    .central-container {
+        flex: 2;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
         padding: 20px;
         background-color: rgba(0, 0, 0, 0.8);
+        border-radius: 10px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+        margin: 20px;
     }
 
     .system-title {
@@ -114,6 +105,8 @@
     }
 
     .edit-form {
+        width: 100%;
+        max-width: 600px;
         background-color: #444;
         padding: 20px;
         border-radius: 5px;
@@ -204,12 +197,13 @@
             flex-direction: column;
         }
 
-        .sidebar {
-            width: 100%;
+        .image-container {
+            display: none;
         }
 
-        .content {
-            padding: 10px;
+        .central-container {
+            width: 90%;
+            max-height: none;
         }
     }
 </style>
