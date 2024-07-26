@@ -1,7 +1,9 @@
 {% extends "base.html" %}
 {% load static %}
 
-{% block title %}<span class="highlight">Perfil - Sistema de Registros de filmes Tarantino</span>{% endblock %}
+{% block title %}
+<span class="highlight">Perfil - Sistema de Registros de filmes Tarantino</span>
+{% endblock %}
 
 {% block content %}
 <div class="main-container">
@@ -21,55 +23,40 @@
             </ul>
             
             <h2 class="section-title">Análise de Dados</h2>
-            <select id="data-analysis" onchange="showAnalysis()">
-                <option value="">Selecione uma análise</option>
-                <option value="total-filmes">Total de Filmes Cadastrados</option>
-                <option value="filmes-por-ano">Filmes por Ano</option>
-                <option value="diretores-favoritos">Diretores Favoritos</option>
-            </select>
+            <form method="post">
+                {% csrf_token %}
+                <select name="analysis_type" onchange="this.form.submit()">
+                    <option value="">Selecione uma análise</option>
+                    <option value="total-filmes">Total de Filmes Cadastrados</option>
+                    <option value="filmes-por-ano">Filmes por Ano</option>
+                    <option value="diretores-favoritos">Diretores Favoritos</option>
+                </select>
+            </form>
             
-            <div id="analysis-result"></div>
+            <div id="analysis-result">
+                {% if analysis_result %}
+                    <h3>{{ analysis_title }}</h3>
+                    {% if analysis_type == 'total-filmes' %}
+                        <p>Total de filmes cadastrados: {{ analysis_result }}</p>
+                    {% elif analysis_type == 'filmes-por-ano' %}
+                        <ul>
+                        {% for ano, count in analysis_result.items %}
+                            <li>{{ ano }}: {{ count }} filme(s)</li>
+                        {% endfor %}
+                        </ul>
+                    {% elif analysis_type == 'diretores-favoritos' %}
+                        <ul>
+                        {% for diretor, count in analysis_result.items %}
+                            <li>{{ diretor }}: {{ count }} filme(s)</li>
+                        {% endfor %}
+                        </ul>
+                    {% endif %}
+                {% endif %}
+            </div>
         </div>
     </div>
     <div class="image-container right-image"></div>
 </div>
-
-<script>
-function showAnalysis() {
-    var analysis = document.getElementById("data-analysis").value;
-    var resultDiv = document.getElementById("analysis-result");
-    
-    if (analysis === "total-filmes") {
-        resultDiv.innerHTML = "Total de filmes cadastrados: {{ user_filmes.count }}";
-    } else if (analysis === "filmes-por-ano") {
-        var filmesporAno = {};
-        {% for cadastro in user_filmes %}
-        var ano = "{{ cadastro.filme.ano_lancamento }}";
-        filmesporAno[ano] = (filmesporAno[ano] || 0) + 1;
-        {% endfor %}
-        
-        var result = "Filmes por ano:<br>";
-        for (var ano in filmesporAno) {
-            result += ano + ": " + filmesporAno[ano] + "<br>";
-        }
-        resultDiv.innerHTML = result;
-    } else if (analysis === "diretores-favoritos") {
-        var diretores = {};
-        {% for cadastro in user_filmes %}
-        var diretor = "{{ cadastro.filme.diretor }}";
-        diretores[diretor] = (diretores[diretor] || 0) + 1;
-        {% endfor %}
-        
-        var result = "Diretores favoritos:<br>";
-        for (var diretor in diretores) {
-            result += diretor + ": " + diretores[diretor] + " filmes<br>";
-        }
-        resultDiv.innerHTML = result;
-    } else {
-        resultDiv.innerHTML = "";
-    }
-}
-</script>
 {% endblock %}
 
 {% block extra_css %}

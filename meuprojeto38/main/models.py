@@ -4,6 +4,8 @@ from django.utils.translation import gettext_lazy as _
 from django.contrib.auth.models import User
 
 
+
+
 class Filme(models.Model):
     nome = models.CharField(_("Nome"), max_length=100)
     ano_lancamento = models.IntegerField(_("Ano de Lançamento"))
@@ -73,4 +75,5 @@ class Perfil(models.Model):
     
     def __str__(self):
         return f'Perfil de {self.user.username}'
+    
 

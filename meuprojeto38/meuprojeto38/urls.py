@@ -3,6 +3,7 @@ from django.urls import path, include
 from django.conf import settings
 from django.conf.urls.static import static
 from main import views  # Certifique-se de que este import está correto
+from schema_graph.views import Schema
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -16,6 +17,7 @@ urlpatterns = [
     path('logout/', views.logout_view, name='logout'),
     path('', views.home_view, name='home'),  
     path('accounts/', include('django.contrib.auth.urls')),
+    path('schema/', Schema.as_view()),
     
     ]
 

@@ -24,3 +24,15 @@ Usuário                   Interface                 View                   Mode
    |                          | sucesso               |                       |
    |<--------------------------|                       |                       |
    |                          |                       |                       |
+
+
+   https://filmow.com/caes-de-aluguel-t4579/
+
+      8 pip install django-extensions
+   9 pip install graphviz
+  10 pip install pygraphviz
+  11 pip install pygraphviz
+  12 python manage.py graph_models -a -o myapp_models.png
+  13 python manage.py graph_models -a -o myapp_models.png
+  14 pip install django-schema-graph...
+  15 python manage.py runserver

@@ -186,4 +186,17 @@ p.register-link {
     background-position: center right;
     min-height: 100vh;
 }
+@media (max-width: 768px) {
+    .main-container {
+        flex-direction: column;
+    }
+
+    .image-container {
+        display: none;
+    }
+
+    .central-container {
+        padding: 10px;
+    }
+}
 
