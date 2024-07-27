@@ -1,0 +1,168 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}Editar Filme - Sistema de Registros de filmes Tarantino{% endblock %}
+
+{% block content %}
+<div class="main-container">
+    <div class="image-container left-image"></div>
+    <div class="central-container">
+        <div class="edit-form">
+            <h1 class="system-title">Editar Filme</h1>
+            <form method="post">
+                {% csrf_token %}
+                {% for field in form %}
+                    <div class="form-group">
+                        {{ field.label_tag }}
+                        {{ field }}
+                        {% if field.errors %}
+                            <div class="error-message">
+                                {% for error in field.errors %}
+                                    {{ error }}
+                                {% endfor %}
+                            </div>
+                        {% endif %}
+                    </div>
+                {% endfor %}
+                <button type="submit" class="btn btn-edit">Salvar Alterações</button>
+            </form>
+            <a href="{% url 'main:home' %}" class="btn btn-back">Voltar</a>
+        </div>
+    </div>
+    <div class="image-container right-image"></div>
+</div>
+{% endblock %}
+
+{% block extra_css %}
+<style>
+    body {
+        background-color: #2c2c2c;
+        color: #f5f5f5;
+        font-family: 'Arial', sans-serif;
+        margin: 0;
+        padding: 0;
+    }
+
+    .main-container {
+        display: flex;
+        width: 100%;
+        min-height: 100vh;
+    }
+
+    .image-container {
+        flex: 1;
+        background-size: cover;
+        background-position: center;
+    }
+
+    .left-image {
+        background-image: url("{% static 'images/pulp-fiction.jpg' %}");
+    }
+
+    .right-image {
+        background-image: url("{% static 'images/pulp-fiction.jpg' %}");
+    }
+
+    .central-container {
+        flex: 2;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background-color: rgba(0, 0, 0, 0.8);
+        padding: 20px;
+    }
+
+    .edit-form {
+        background-color: #444;
+        padding: 30px;
+        border-radius: 10px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+        width: 100%;
+        max-width: 500px;
+    }
+
+    .system-title {
+        color: #ffcc00;
+        text-align: center;
+        margin-bottom: 20px;
+        font-size: 24px;
+    }
+
+    .form-group {
+        margin-bottom: 15px;
+    }
+
+    .form-group label {
+        display: block;
+        margin-bottom: 5px;
+        color: #ffcc00;
+    }
+
+    .form-group input[type="text"],
+    .form-group input[type="number"],
+    .form-group textarea {
+        width: 100%;
+        padding: 10px;
+        border: 1px solid #555;
+        background-color: #333;
+        color: #fff;
+        border-radius: 5px;
+    }
+
+    .btn {
+        display: inline-block;
+        padding: 10px 15px;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        font-size: 16px;
+        text-decoration: none;
+        text-align: center;
+    }
+
+    .btn-edit {
+        background-color: #4CAF50;
+        color: white;
+        width: 100%;
+    }
+
+    .btn-edit:hover {
+        background-color: #45a049;
+    }
+
+    .btn-back {
+        background-color: #ffcc00;
+        color: #000;
+        margin-top: 10px;
+        width: 100%;
+    }
+
+    .btn-back:hover {
+        background-color: #e6b800;
+    }
+
+    .error-message {
+        color: #ff4444;
+        font-size: 0.9em;
+        margin-top: 5px;
+    }
+
+    @media (max-width: 768px) {
+        .main-container {
+            flex-direction: column;
+        }
+
+        .image-container {
+            display: none;
+        }
+
+        .central-container {
+            padding: 10px;
+        }
+
+        .edit-form {
+            padding: 20px;
+        }
+    }
+</style>
+{% endblock %}

@@ -128,6 +128,9 @@ def profile_view(request):
 
     return render(request, 'main/profile.html', context)
 
+def documentacao(request):
+    return render(request, 'documentacao.html')
+
 
 
 # # antes  Cadastro.objects.create(user=request.user, filme=filme)

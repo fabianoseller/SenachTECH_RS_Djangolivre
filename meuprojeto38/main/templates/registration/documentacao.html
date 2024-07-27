@@ -1,0 +1,379 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Documentação - Sistema de Registros de Filmes Tarantino</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #f4f4f4;
+        }
+        h1, h2, h3 {
+            color: #2c3e50;
+        }
+        code {
+            background-color: #e8e8e8;
+            padding: 2px 4px;
+            border-radius: 4px;
+        }
+        pre {
+            background-color: #e8e8e8;
+            padding: 10px;
+            border-radius: 4px;
+            overflow-x: auto;
+        }
+        .section {
+            margin-bottom: 30px;
+        }
+        .highlight {
+            color: #e74c3c;
+        }
+        .image-container {
+            text-align: center;
+            margin: 20px 0;
+        }
+        .image-container img {
+            max-width: 100%;
+            height: auto;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+        .navbar {
+            background-color: #2c3e50;
+            padding: 10px;
+            text-align: center;
+        }
+        .navbar a {
+            color: #ecf0f1;
+            margin: 0 15px;
+            text-decoration: none;
+            font-weight: bold;
+        }
+        .navbar a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <div class="navbar">
+        <a href="#objetivo-principal">Objetivo Principal</a>
+        <a href="#objetivos-especificos">Objetivos Específicos</a>
+        <a href="#requisitos-funcionais">Requisitos Funcionais</a>
+        <a href="#requisitos-nao-funcionais">Requisitos Não Funcionais</a>
+        <a href="#modelo-de-dados">Modelo de Dados</a>
+        <a href="#funcionalidades">Funcionalidades</a>
+        <a href="#interface">Interface</a>
+        <a href="#tecnologias">Tecnologias</a>
+        <a href="#futuras">Considerações Futuras</a>
+        <a href="#modelo-fisico">Modelo Físico</a>
+        <a href="#modelo-er">Modelo ER</a>
+    </div>
+
+    <h1>Documentação do Sistema de Registros de Filmes Tarantino</h1>
+
+    <div id="objetivo-principal" class="section">
+        <h2>1. Objetivo Principal do Sistema</h2>
+        <p>O objetivo principal do sistema é fornecer uma plataforma para usuários registrarem e gerenciarem informações sobre filmes, com foco específico nos filmes de Quentin Tarantino.</p>
+    </div>
+
+    <div id="objetivos-especificos" class="section">
+        <h2>2. Objetivos Específicos</h2>
+        <h3>2.1. Gerenciamento de usuários</h3>
+        <ul>
+            <li>Permitir que novos usuários se registrem no sistema</li>
+            <li>Autenticar usuários existentes através de um processo de login</li>
+            <li>Gerenciar sessões de usuários, incluindo logout</li>
+        </ul>
+        <h3>2.2. Cadastro e Gerenciamento de Filmes</h3>
+        <ul>
+            <li>Permitir que usuários autenticados adicionem novos filmes ao sistema</li>
+            <li>Possibilidade de edição de informações de filmes existentes</li>
+            <li>Permitir a exclusão de filmes do sistema</li>
+        </ul>
+        <h3>2.3. Visualização de Filmes</h3>
+        <ul>
+            <li>Exibir uma lista de filmes cadastrados pelo usuário logado</li>
+            <li>Ver detalhes de cada filme, como nome, ano de lançamento, diretor e sinopse</li>
+        </ul>
+        <h3>2.4. Personalização de Cadastros</h3>
+        <ul>
+            <li>Associar filmes a usuários específicos através do modelo Cadastro</li>
+            <li>Permitir que os usuários adicionem descrições específicas aos filmes cadastrados</li>
+        </ul>
+        <h3>2.5. Feedback ao Usuário</h3>
+        <ul>
+            <li>Fornecer mensagens de feedback para ações como login, registro, adição, edição e exclusão de filmes</li>
+        </ul>
+        <h3>2.6. Segurança</h3>
+        <ul>
+            <li>Implementar controle de acesso, garantindo que apenas usuários autenticados possam realizar operações no sistema</li>
+        </ul>
+        <h3>2.7. Interface Amigável</h3>
+        <ul>
+            <li>Oferecer uma interface intuitiva e responsiva para interação com o sistema</li>
+        </ul>
+        <h3>2.8. Organização de Dados</h3>
+        <ul>
+            <li>Manter uma estrutura organizada de dados, relacionando usuários, filmes e cadastros</li>
+        </ul>
+    </div>
+
+    <div id="requisitos-funcionais" class="section">
+        <h2>3. Requisitos Funcionais (RF)</h2>
+        <ul>
+            <li>RF01 - Registro de Usuário</li>
+            <li>RF02 - Login</li>
+            <li>RF03 - Logout</li>
+            <li>RF04 - Adicionar Filme</li>
+            <li>RF05 - Visualizar Filmes</li>
+            <li>RF06 - Editar Filme</li>
+            <li>RF07 - Excluir Filme</li>
+            <li>RF08 - Mensagens de Feedback</li>
+        </ul>
+    </div>
+
+    <div id="requisitos-nao-funcionais" class="section">
+        <h2>4. Requisitos Não Funcionais (RNF)</h2>
+        <ul>
+            <li>RNF01 - Desempenho</li>
+            <li>RNF02 - Segurança</li>
+            <li>RNF03 - Usabilidade</li>
+            <li>RNF04 - Compatibilidade</li>
+            <li>RNF05 - Manutenibilidade</li>
+        </ul>
+    </div>
+
+    <div id="modelo-de-dados" class="section">
+        <h2>5. Modelo de Dados</h2>
+        <h3>5.1. Entidades Principais</h3>
+        <ul>
+            <li>Usuário (modelo de usuário integrado do Django)</li>
+            <li>Filme</li>
+            <li>Cadastro</li>
+        </ul>
+        <h3>5.2. Relacionamentos</h3>
+        <ul>
+            <li>Usuário tem muitos Cadastros (um-para-muitos)</li>
+            <li>Filme tem muitos Cadastros (um-para-muitos)</li>
+            <li>Cadastro pertence a um usuário e a um filme (muitos-para-um para ambos)</li>
+        </ul>
+    </div>
+
+    <div id="funcionalidades" class="section">
+        <h2>6. Principais Funcionalidades Implementadas</h2>
+        <ul>
+            <li>6.1. Autenticação de Usuários</li>
+            <li>6.2. Registro de Novos Usuários</li>
+            <li>6.3. Adição de Filmes</li>
+            <li>6.4. Edição de Filmes</li>
+            <li>6.5. Exclusão de Filmes</li>
+            <li>6.6. Visualização de Filmes do Usuário</li>
+        </ul>
+    </div>
+
+    <div id="interface" class="section">
+        <h2>7. Interface do Usuário</h2>
+        <h3>7.1. Telas Principais</h3>
+        <ul>
+            <li>Tela de Login</li>
+            <li>Tela de Registro</li>
+            <li>Página Inicial (Home)</li>
+            <li>Tela de Adição de Filme</li>
+            <li>Tela de Edição de Filme</li>
+        </ul>
+        <h3>7.2. Elementos de Design</h3>
+        <ul>
+            <li>Uso de cores escuras com destaque em amarelo para elementos importantes</li>
+            <li>Imagens de fundo relacionadas a filmes de Tarantino</li>
+            <li>Layout responsivo para diferentes tamanhos de tela</li>
+        </ul>
+    </div>
+
+    <div id="tecnologias" class="section">
+        <h2>8. Tecnologias Utilizadas</h2>
+        <ul>
+            <li>Backend: Django (Python)</li>
+            <li>Frontend: HTML, CSS, JavaScript</li>
+            <li>Banco de Dados: SQLite (desenvolvimento) / PostgreSQL (produção)</li>
+        </ul>
+    </div>
+
+    <div id="futuras" class="section">
+        <h2>9. Considerações Futuras</h2>
+        <ul>
+            <li>Implementação de um sistema de busca de filmes</li>
+            <li>Adição de uma funcionalidade de avaliação de filmes</li>
+            <li>Integração com APIs externas para obter informações adicionais sobre os filmes</li>
+        </ul>
+    </div>
+
+    <div id="modelo-fisico" class="section">
+        <h2>10. Modelo Físico do Banco de Dados</h2>
+        <h3>10.1 Modelo Físico do Banco de Dados (SQL Lite)</h3>
+        <pre>
+-- Tabela de Usuários (built-in do Django)
+CREATE TABLE auth_user (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    password VARCHAR(128) NOT NULL,
+    last_login DATETIME,
+    is_superuser BOOLEAN NOT NULL,
+    username VARCHAR(150) NOT NULL UNIQUE,
+    first_name VARCHAR(30) NOT NULL,
+    last_name VARCHAR(150) NOT NULL,
+    email VARCHAR(254) NOT NULL,
+    is_staff BOOLEAN NOT NULL,
+    is_active BOOLEAN NOT NULL,
+    date_joined DATETIME NOT NULL
+);
+
+-- Tabela de Filmes
+CREATE TABLE filme (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    nome VARCHAR(255) NOT NULL,
+    ano_lancamento INTEGER NOT NULL,
+    diretor VARCHAR(255) NOT NULL,
+    sinopse TEXT
+);
+
+-- Tabela de Cadastro (relação entre Usuário e Filme)
+CREATE TABLE cadastro (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    user_id INTEGER NOT NULL,
+    filme_id INTEGER NOT NULL,
+    descricao TEXT,
+    FOREIGN KEY (user_id) REFERENCES auth_user (id),
+    FOREIGN KEY (filme_id) REFERENCES filme (id)
+);
+        </pre>
+
+        <h3>10.2 Diagrama de Relacionamento</h3>
+        <pre>
++-----------------+          +-----------------+          +-----------------+
+|     User        |          |     Cadastro    |          |      Filme      |
++-----------------+          +-----------------+          +-----------------+
+| id (PK)         |&lt;---------| id (PK)         |-------&gt;| id (PK)         |
+| username        |          | user_id (FK)    |          | nome            |
+| email           |          | filme_id (FK)   |          | ano_lancamento  |
+| password        |          | descricao       |          | diretor         |
+| first_name      |          +-----------------+          | sinopse         |
+| last_name       |                                       +-----------------+
+| is_staff        |
+| is_active       |
+| date_joined     |
+| last_login      |
++-----------------+
+        </pre>
+
+        <h3>10.3 Geração de Diagramas</h3>
+        <p>Para gerar diagramas do modelo de dados, você pode usar as seguintes ferramentas e comandos:</p>
+        <pre>
+pip install django-extensions
+pip install graphviz
+pip install pygraphviz
+python manage.py graph_models -a -o myapp_models.png
+pip install django-schema-graph
+python manage.py runserver
+        </pre>
+        <p>Após instalar o django-schema-graph, você pode acessar o diagrama do esquema em /schema/ na sua aplicação em execução.</p>
+    </div>
+
+    <div id="modelo-er" class="section">
+        <h2>11. Modelo de Entidade-Relacionamento (ER)</h2>
+        
+        <h3>11.1 Descrição do Diagrama ER</h3>
+        <p>O sistema de registro de filmes Tarantino possui as seguintes entidades e relações:</p>
+        
+        <h4>Entidades:</h4>
+        <ul>
+            <li><strong>Usuário (auth_user):</strong> id (PK), username, email, password, first_name, last_name, is_staff, is_active, date_joined, last_login</li>
+            <li><strong>Filme:</strong> id (PK), nome, ano_lancamento, diretor, sinopse</li>
+            <li><strong>Cadastro:</strong> id (PK), user_id (FK para Usuário), filme_id (FK para Filme), descrição</li>
+        </ul>
+        
+        <h4>Relações:</h4>
+        <ul>
+            <li>Um usuário pode cadastrar vários filmes (relação um-para-muitos entre Usuário e Cadastro).</li>
+            <li>Um filme pode ser cadastrado por vários usuários (relação um-para-muitos entre Filme e Cadastro).</li>
+        </ul>
+
+        <h3>11.2 Diagrama ER em Texto</h3>
+        <pre>
++-----------------+          +-----------------+          +-----------------+
+|     User        |          |     Cadastro    |          |      Filme      |
++-----------------+          +-----------------+          +-----------------+
+| id (PK)         |&lt;---------| id (PK)         |-------&gt;| id (PK)         |
+| username        |          | user_id (FK)    |          | nome            |
+| email           |          | filme_id (FK)   |          | ano_lancamento  |
+| password        |          | descricao       |          | diretor         |
+| first_name      |          +-----------------+          | sinopse         |
+| last_name       |                                       +-----------------+
+| is_staff        |
+| is_active       |
+| date_joined     |
+| last_login      |
++-----------------+
+        </pre>
+
+        <h3>11.3 Código PlantUML para Gerar o Diagrama ER</h3>
+        <pre>
+@startuml
+entity "User" as user {
+    + id : int &lt;&lt;PK&gt;&gt;
+    --
+    username : varchar
+    email : varchar
+    password : varchar
+    first_name : varchar
+    last_name : varchar
+    is_staff : boolean
+    is_active : boolean
+    date_joined : datetime
+    last_login : datetime
+}
+
+entity "Filme" as filme {
+    + id : int &lt;&lt;PK&gt;&gt;
+    --
+    nome : varchar
+    ano_lancamento : int
+    diretor : varchar
+    sinopse : text
+}
+
+entity "Cadastro" as cadastro {
+    + id : int &lt;&lt;PK&gt;&gt;
+    --
+    user_id : int &lt;&lt;FK&gt;&gt;
+    filme_id : int &lt;&lt;FK&gt;&gt;
+    descricao : text
+}
+
+user ||--o{ cadastro : "cadastra"
+filme ||--o{ cadastro : "foi cadastrado"
+@enduml
+        </pre>
+
+        <p>Para gerar a imagem do diagrama ER, você pode copiar o código acima e colá-lo em um editor PlantUML online.</p>
+    </div>
+
+    <div id="imagens" class="section">
+        <h2>12. Diagramas Visuais</h2>
+        <div class="image-container">
+            <h3>Diagrama de Relacionamento</h3>
+            <img src="{% static 'images/schema.jpeg' %}" alt="Diagrama de Relacionamento">
+        </div>
+        <div class="image-container">
+            <h3>Diagrama ER</h3>
+            <img src="{% static 'images/er1.jpg' %}" alt="Diagrama ER">
+        </div>
+    </div>
+</body>
+</html>

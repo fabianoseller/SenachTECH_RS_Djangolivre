@@ -14,7 +14,25 @@
             <h2 class="register-subtitle">Registre-se</h2>
             <form method="post" class="register-form">
                 {% csrf_token %}
-                {{ form.as_p }}
+                {% for field in form %}
+                    <div class="form-group">
+                        {{ field.label_tag }}
+                        {% if field.name == 'password1' %}
+                            <div class="tooltip-container">
+                                {{ field }}
+                                <span class="tooltip">
+                                    Sua senha deve:<br>
+                                    - Ter pelo menos 8 caracteres<br>
+                                    - Não ser muito similar às suas informações pessoais<br>
+                                    - Não ser uma senha comum<br>
+                                    - Não ser inteiramente numérica
+                                </span>
+                            </div>
+                        {% else %}
+                            {{ field }}
+                        {% endif %}
+                    </div>
+                {% endfor %}
                 <button type="submit" class="btn btn-register">Registrar</button>
             </form>
             
@@ -183,6 +201,50 @@
         max-width: 100%;
         height: auto;
         margin-bottom: 20px;
+    }
+
+    .form-group {
+        position: relative;
+        margin-bottom: 15px;
+    }
+
+    .tooltip-container {
+        position: relative;
+        display: inline-block;
+        width: 100%;
+    }
+
+    .tooltip {
+        visibility: hidden;
+        width: 250px;
+        background-color: #555;
+        color: #fff;
+        text-align: left;
+        border-radius: 6px;
+        padding: 10px;
+        position: absolute;
+        z-index: 1;
+        bottom: 125%;
+        left: 50%;
+        margin-left: -125px;
+        opacity: 0;
+        transition: opacity 0.3s;
+    }
+
+    .tooltip-container:hover .tooltip {
+        visibility: visible;
+        opacity: 1;
+    }
+
+    .tooltip::after {
+        content: "";
+        position: absolute;
+        top: 100%;
+        left: 50%;
+        margin-left: -5px;
+        border-width: 5px;
+        border-style: solid;
+        border-color: #555 transparent transparent transparent;
     }
 
     @media (max-width: 768px) {

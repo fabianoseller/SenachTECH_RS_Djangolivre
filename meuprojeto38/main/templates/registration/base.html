@@ -103,7 +103,6 @@
             {% else %}
                 <a href="{% url 'main:login' %}">Login</a>
                 <a href="{% url 'main:register' %}">Registrar</a>
-                <a href="{% url 'main:documentacao' %}">Documentação</a>
             {% endif %}
         </div>
     </nav>
@@ -112,7 +111,7 @@
         {% endblock %}
     </div>
     <div class="footer">
-        <p>&copy; 2024 Sistema de Registros de Filmes Tarantino </p>
+        <p>&copy; 2024 Sistema de Registros de filmes Tarantino</p>
     </div>
     <script src="{% static 'js/main.js' %}"></script>
     {% block extra_js %}{% endblock %}
