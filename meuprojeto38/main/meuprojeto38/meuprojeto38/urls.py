@@ -10,8 +10,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('main.urls', namespace='main')),  # Inclui as URLs do seu aplicativo principal com namespace 'main'
     path('accounts/', include('django.contrib.auth.urls')),  # Inclui as URLs de autenticação padrão do Django
-   
-     
+      
 
 ]
 
