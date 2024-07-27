@@ -53,17 +53,31 @@
         display: flex;
         width: 100%;
         min-height: 100vh;
+        position: relative;
+    }
+
+    .main-container::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 33.33%; /* Ajuste este valor conforme necessário */
+        background-image: url("{% static 'images/gallery-1485199682-pulp-fiction.jpg' %}");
+        background-size: cover;
+        background-position: center;
+        opacity: 0.5;
+        z-index: -1;
     }
 
     .image-container {
         flex: 1;
         background-size: cover;
         background-position: center;
-        opacity: 0.5; /* 50% de transparência */
     }
 
     .left-image {
-        background-image: url("{% static 'images/pulp-fiction-bg.jpg' %}"); /* Imagem "pulp-fiction-bg.jpg" ao lado esquerdo */
+        background-image: url("{% static 'images/pulp-fiction-bg.jpg' %}"); 
     }
 
     .central-container {
@@ -146,13 +160,13 @@
     }
 
     .register-link {
-        color: #ffcc00; /* Alterado para amarelo */
+        color: #ffcc00;
         margin-top: 15px;
         text-align: center;
     }
 
     .register-link a {
-        color: #ffcc00; /* Alterado para amarelo */
+        color: #ffcc00;
         text-decoration: none;
     }
 
@@ -171,6 +185,10 @@
 
         .central-container {
             padding: 10px;
+        }
+
+        .main-container::before {
+            left: 0;
         }
     }
 </style>

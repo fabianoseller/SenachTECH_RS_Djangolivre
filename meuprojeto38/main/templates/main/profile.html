@@ -71,6 +71,21 @@
         display: flex;
         width: 100%;
         min-height: 100vh;
+        position: relative;
+    }
+
+    .main-container::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        right: 43.33%; 
+        bottom: 0;
+        left: 0;
+        background-image: url("{% static 'images/kb1.jpg' %}");
+        background-size: cover;
+        background-position: center;
+        opacity: 0.5;
+        z-index: -1;
     }
 
     .central-container {
@@ -160,6 +175,10 @@
         .central-container {
             padding: 10px;
             max-height: none;
+        }
+
+        .main-container::before {
+            right: 0;
         }
     }
 </style>
