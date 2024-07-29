@@ -1,55 +1,91 @@
+/* Estilos Gerais */
 body {
-    background-color: #2c2c2c; /* Fundo escuro */
-    color: #f5f5f5; /* Texto claro */
-    font-family: 'Arial', sans-serif;
+    font-family: Arial, sans-serif;
+    background-color: #2c2c2c;
+    color: #f5f5f5;
+    margin: 0;
+    padding: 0;
+    min-height: 100vh;
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 100vh;
-    margin: 0;
-    position: relative;
 }
 
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+/* Layout Principal */
 .main-container {
     display: flex;
     width: 100%;
-    height: 100%;
+    height: 100vh;
+    position: relative;
 }
 
+/* Imagens de Fundo */
 .image-container {
     flex: 1;
     background-size: cover;
     background-position: center;
-    opacity: 0.5; /* Ajuste a opacidade para criar o efeito de transparência */
+    opacity: 0.5;
 }
 
 .left-image {
-    background: url('../images/pulp-fiction.jpg') no-repeat center center;
+    background-image: url("{% static 'images/kb1.jpg' %}");
 }
 
 .right-image {
-    background: url('../images/pulp-fiction.jpg') no-repeat center center;
+    background-image: url("{% static 'images/ttg.gif' %}");
+    background-size: 30%;
+    background-repeat: no-repeat;
+    background-position: center right;
 }
 
+/* Container Central */
 .central-container {
-    background-color: rgba(0, 0, 0, 0.8); /* Fundo semi-transparente */
+    background-color: rgba(0, 0, 0, 0.8);
     padding: 20px;
     border-radius: 10px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
     width: 300px;
     text-align: center;
-    z-index: 2; /* Certifique-se de que o container está acima da imagem */
+    z-index: 2;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
 }
 
-h2, h1 {
-    color: #ffcc00; /* Cor amarela para o título */
+/* Cabeçalho */
+header {
+    text-align: center;
+}
+
+.header-top {
+    background-color: #333;
+    padding: 20px 0;
+}
+
+.header-bottom {
+    background-color: #007BFF;
+    padding: 20px 0;
+}
+
+/* Tipografia */
+h1, h2, .system-title, .section-title {
+    color: #ffcc00;
+    font-weight: bold;
     margin-bottom: 20px;
 }
 
+.system-title {
+    font-size: 24px;
+}
+
+/* Formulários */
 form {
     display: flex;
     flex-direction: column;
@@ -57,35 +93,39 @@ form {
 }
 
 label {
-    color: #a9a9a9; /* Cor cinza escuro para os rótulos */
+    color: #a9a9a9;
     margin-bottom: 5px;
     text-align: left;
 }
 
 input, select, textarea {
-    background-color: #444; /* Fundo escuro para os inputs */
+    background-color: #444;
     color: #fff;
     border: 1px solid #555;
     padding: 10px;
     margin-bottom: 10px;
     border-radius: 5px;
+    width: 100%;
+    box-sizing: border-box;
 }
 
 button {
-    background-color: #ffcc00; /* Botão amarelo */
+    background-color: #ffcc00;
     color: #000;
     border: none;
     padding: 10px;
     border-radius: 5px;
     cursor: pointer;
+    margin-top: 10px;
 }
 
 button:hover {
-    background-color: #e6b800; /* Cor do botão ao passar o mouse */
+    background-color: #e6b800;
 }
 
+/* Links */
 a {
-    color: #ffcc00; /* Links em amarelo */
+    color: #ffcc00;
     text-decoration: none;
 }
 
@@ -93,51 +133,16 @@ a:hover {
     text-decoration: underline;
 }
 
-p.register-link {
-    color: #a9a9a9; /* Cor cinza escuro para o texto "Não tem uma conta?" */
-}
-
-.messages {
+/* Mensagens e Alertas */
+.messages, .msg-alertas {
     list-style-type: none;
     padding: 0;
-}
-
-.messages li {
-    color: red;
-    margin-bottom: 10px;
-}
-
-/* Adicionando estilos para o GIF e o título do sistema */
-.imgpython {
-    max-width: 100%;
-    height: auto;
-    margin-bottom: 20px;
-}
-
-.system-title {
-    font-size: 24px;
-    margin-bottom: 20px;
-}
-
-/* Estilos para o formulário de login */
-.inputlogin {
-    width: 100%;
-    box-sizing: border-box;
-}
-
-.botaologin {
-    margin-top: 10px;
-}
-
-/* Estilos para mensagens de alerta */
-.msg-alertas {
     margin-top: 15px;
 }
 
-.ms {
-    display: block;
-    padding: 10px;
+.messages li, .ms {
     margin-bottom: 10px;
+    padding: 10px;
     border-radius: 5px;
 }
 
@@ -151,41 +156,14 @@ p.register-link {
     color: #155724;
 }
 
-.right-image {
-    background-image: url("{% static 'images/dek.gif' %}"); 
+/* Imagens e Mídia */
+.imgpython {
+    max-width: 100%;
+    height: auto;
+    margin-bottom: 20px;
 }
 
-.register-link a {
-    color: #ffcc00; 
-}
-
-.system-title {
-    color: #ffcc00; /* Amarelo */
-    font-weight: bold; /* Negrito */
-}
-
-.left-image {
-    background-image: url("{% static 'images/pulp-fiction-bg.jpg' %}"); /* Imagem "pulp-fiction-bg.jpg" ao lado esquerdo */
-    opacity: 0.5; /* 50% de transparência */
-}
-
-.right-image {
-    background-image: url("{% static 'images/du-crepuscule-a-l-aube-g1c32b.jpg' %}"); /* Imagem ao lado direito */
-    opacity: 0.7; /* 70% de opacidade */
-
-}
-.system-title, .section-title {
-    color: #ffcc00;
-    font-weight: bold;
-}
-.right-image {
-    flex: 1;
-    background-image: url("{% static 'images/ttg.gif' %}");
-    background-size: 30%;
-    background-repeat: no-repeat;
-    background-position: center right;
-    min-height: 100vh;
-}
+/* Responsividade */
 @media (max-width: 768px) {
     .main-container {
         flex-direction: column;
@@ -197,36 +175,19 @@ p.register-link {
 
     .central-container {
         padding: 10px;
+        width: 90%;
     }
 }
 
-.main-container::before {
-    content: "";
-    position: absolute;
-    top: 0;
-    right: 0;
-    bottom: 0;
-    left: 33.33%; 
-    background-image: url("{% static 'images/gallery-1485199682-pulp-fiction.jpg' %}");
-    background-size: cover;
-    background-position: center;
-    opacity: 0.5;
-    z-index: -1;
+/* Blocos de Informação */
+.info-block {
+    background-color: #d3d3d3;
+    border-radius: 8px;
+    padding: 20px;
+    margin: 20px 0;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
 }
 
-.main-container::before {
-    content: "";
-    position: absolute;
-    top: 0;
-    right: 3.33%; 
-    bottom: 0;
-    left: 0;
-    background-image: url("{% static 'images/kb1.jpg' %}");
-    background-size: cover;
-    background-position: center;
-    opacity: 0.5;
-    z-index: -1;
+.info-block p {
+    margin: 10px 0;
 }
-
-
-

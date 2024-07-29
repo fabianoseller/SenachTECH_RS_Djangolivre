@@ -10,40 +10,62 @@
             font-family: Arial, sans-serif;
             line-height: 1.6;
             color: #333;
-            max-width: 800px;
-            margin: 0 auto;
-            padding: 20px;
+            margin: 0;
+            padding: 0;
             background-color: #f4f4f4;
         }
-        h1, h2, h3 {
-            color: #2c3e50;
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 20px;
         }
-        code {
-            background-color: #e8e8e8;
-            padding: 2px 4px;
-            border-radius: 4px;
-        }
-        pre {
-            background-color: #e8e8e8;
-            padding: 10px;
-            border-radius: 4px;
-            overflow-x: auto;
-        }
-        .section {
-            margin-bottom: 30px;
-        }
-        .highlight {
-            color: #e74c3c;
-        }
-        .image-container {
+        header {
             text-align: center;
+            color: white;
+            padding: 20px 0;
+            background-image: url("{% static 'images/fecom.jpg' %}");
+            background-size: cover; /* Faz a imagem cobrir todo o espaço */
+            background-position: center; /* Centraliza a imagem */
+            height: 300px; /* Altura do cabeçalho */
+            position: relative;
+        }
+        .header-content {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            text-align: center;
+        }
+        .header-top {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+        h1 {
+            color: yellow;
+            font-size: 2em;
+            margin: 0;
+        }
+        .header-title {
+            color: blue;
+            font-size: 1.5em;
+            font-weight: bold;
             margin: 20px 0;
         }
-        .image-container img {
-            max-width: 100%;
-            height: auto;
-            border: 1px solid #ddd;
-            border-radius: 4px;
+        .header-bottom {
+            background-color: rgba(0, 123, 255, 0.8); /* Azul com transparência */
+            padding: 10px 0;
+        }
+        h2 {
+            margin: 0;
+            font-size: 1.5em;
+        }
+        section {
+            background-color: white;
+            padding: 20px;
+            margin-top: 20px;
+            border-radius: 5px;
             box-shadow: 0 0 10px rgba(0,0,0,0.1);
         }
         .navbar {
@@ -60,9 +82,44 @@
         .navbar a:hover {
             text-decoration: underline;
         }
+
+        
     </style>
 </head>
 <body>
+    <header>
+        <div class="header-content">
+            <div class="header-top">
+                <h1>TRILHA "Senac Tech TI" - Desenvolvimento de Websites com Python / Django</h1>
+            </div>
+            <div class="header-bottom">
+                <h2>Sistema de Registros de Filmes Tarantino</h2>
+                <p>PORTO ALEGRE, Julho de 2024</p>
+            </div>
+        </div>
+    </header>
+    
+    <nav class="navbar">
+    
+        <a href="#funcionalidades">Funcionalidades</a>
+     
+    </nav>
+
+    <div class="container">
+        <section>
+            <h3>Informações do Projeto</h3>
+            <p><strong>Nome:</strong> Fabiano Antunes</p>
+            <p><strong>Turma:</strong> Senac 140254</p>
+            <p><strong>Professor:</strong> Lucas</p>
+            <div class="info-image">
+                <img src="{% static 'images/headerpitao34.gif' %}" alt="Imagem Fecom" width="300" height="200">
+            </div>
+        </section>
+    </div>
+</body>
+</html>
+
+          
     <div class="navbar">
         <a href="#objetivo-principal">Objetivo Principal</a>
         <a href="#objetivos-especificos">Objetivos Específicos</a>
@@ -74,18 +131,73 @@
         <a href="#tecnologias">Tecnologias</a>
         <a href="#futuras">Considerações Futuras</a>
         <a href="#modelo-fisico">Modelo Físico</a>
-        <a href="#modelo-er">Modelo ER</a>
-        <a href="#modelo-er">[Teste pwd]RafaelaZulu25
-            u{5I8WZ_[4h`</a>
+        <a href="#conclusao">Conclusão</a>
+        
+
+        <button style="color: red; font-weight: bold;" onclick="window.location.href='http://127.0.0.1:8000/'">VOLTAR</button>
 
         
     </div>
 
-    <h1>Documentação do Sistema de Registros de Filmes Tarantino</h1>
+
 
     <div id="objetivo-principal" class="section">
         <h2>1. Objetivo Principal do Sistema</h2>
-        <p>O objetivo principal do sistema é fornecer uma plataforma para usuários registrarem e gerenciarem informações sobre filmes, com foco específico nos filmes de Quentin Tarantino.</p>
+
+        <p style="color: red; font-weight: bold;">
+            <span style="background-color: yellow; padding: 2px 4px; cursor: pointer;" onclick="copyToClipboard('RafaelaZulu25 / u{5I8WZ_[4h`')">
+                [Usuário Teste:] RafaelaZulu25 / u{5I8WZ_[4h`
+            </span>
+        </p>
+        
+        <script>
+        function copyToClipboard(text) {
+            navigator.clipboard.writeText(text).then(function() {
+                alert('Texto copiado para a área de transferência!');
+            }, function(err) {
+                console.error('Erro ao copiar texto: ', err);
+            });
+        }
+        </script>
+        <h3>Objetivo Principal</h3>
+        <p>
+            O objetivo principal do sistema é fornecer uma plataforma para usuários registrarem e gerenciarem informações sobre filmes, com foco específico nos filmes de Quentin Tarantino.
+        </p>
+        
+        <h3>Descrição Geral</h3>
+        <p>
+            O Sistema de Registros de Filmes Tarantino é uma plataforma especializada que permite aos usuários cadastrar e gerenciar informações sobre os filmes do renomado diretor Quentin Tarantino. Este sistema foi projetado para oferecer uma experiência eficiente e organizada aos entusiastas do cinema, particularmente aos fãs do trabalho de Tarantino.
+        </p>
+        
+        <h3>Estrutura do Sistema</h3>
+        <p>
+            O sistema é composto por três entidades principais:
+        </p>
+        <ul>
+            <li><strong>Usuário:</strong> Armazena informações essenciais como nome de usuário, e-mail, senha e dados pessoais.</li>
+            <li><strong>Filme:</strong> Contém detalhes sobre cada obra, incluindo nome, ano de lançamento, diretor e sinopse.</li>
+            <li><strong>Cadastro:</strong> Estabelece a relação entre usuários e filmes, permitindo que os usuários registrem filmes e adicionem descrições personalizadas.</li>
+        </ul>
+        
+        <h3>Funcionalidades</h3>
+        <p>
+            Para garantir a eficiência e a eficácia do sistema, foram implementadas várias funcionalidades.
+        </p>
+    </div>
+        <ul>
+            <li>Cadastro de Usuários: Os usuários podem se registrar fornecendo informações básicas, como nome de usuário e senha.</li>
+            <li>Cadastro de Filmes: Os usuários podem adicionar novos filmes ao sistema, preenchendo detalhes como título, ano de lançamento, diretor e sinopse.</li>
+            <li>Associação Usuário-Filme: Através da entidade Cadastro, os usuários podem associar-se a filmes específicos e adicionar descrições personalizadas.</li>
+            <li>Pesquisa e Filtragem: O sistema oferece funcionalidades de busca e filtragem para facilitar a localização de filmes específicos.</li>
+            <li>Atualizações em Tempo Real: As informações são atualizadas em tempo real, garantindo que os usuários tenham acesso aos dados mais recentes.</li>
+            <li>Análises: O sistema gera relatórios detalhados sobre o uso da plataforma, permitindo análises sobre os filmes mais populares e as tendências de cadastro.</li>
+            <li>Interface Intuitiva: A interface do usuário foi projetada para ser intuitiva e fácil de usar, com um botão "VOLTAR" em vermelho e negrito para facilitar a navegação.</li>
+            <li>Segurança de Dados: O sistema implementa medidas de segurança robustas para proteger as informações dos usuários e a integridade dos dados dos filmes.</li>
+            <li>Base de Conhecimento: Uma base de conhecimento está disponível para ajudar os usuários a resolver problemas comuns e entender melhor o funcionamento do sistema.</li>
+        </ul>
+        <p>
+           Apaixonados por Quentin.
+        </p>
     </div>
 
     <div id="objetivos-especificos" class="section">
@@ -205,8 +317,8 @@
         <h2>8. Tecnologias Utilizadas</h2>
         <ul>
             <li>Backend: Django (Python)</li>
-            <li>Frontend: HTML, CSS, JavaScript</li>
-            <li>Banco de Dados: SQLite (desenvolvimento) / PostgreSQL (produção)</li>
+            <li>Frontend: HTML, CSS,>
+            <li>Banco de Dados: SQLite (desenvolvimento) </li>
         </ul>
     </div>
 
@@ -218,6 +330,10 @@
             <li>Integração com APIs externas para obter informações adicionais sobre os filmes</li>
         </ul>
     </div>
+
+  
+    
+
 
     <div id="modelo-fisico" class="section">
         <h2>10. Modelo Físico do Banco de Dados</h2>
@@ -256,6 +372,37 @@ CREATE TABLE cadastro (
     FOREIGN KEY (user_id) REFERENCES auth_user (id),
     FOREIGN KEY (filme_id) REFERENCES filme (id)
 );
+
+CREATE TABLE IF NOT EXISTS filmes_tarantino (
+        id INT AUTO_INCREMENT PRIMARY KEY,
+        nome VARCHAR(255) NOT NULL,
+        ano_lancamento INT NOT NULL,
+        onde_assistir VARCHAR(255) NOT NULL,
+        elenco TEXT NOT NULL
+    );
+''')
+
+cursor.execute('''
+    CREATE TABLE IF NOT EXISTS usuarios (
+        id INT AUTO_INCREMENT PRIMARY KEY,
+        username VARCHAR(255) NOT NULL,
+        password VARCHAR(255) NOT NULL,
+        nome VARCHAR(255),
+        email VARCHAR(255)
+    );
+''')
+
+cursor.execute('''
+    CREATE TABLE IF NOT EXISTS user_filmes (
+        usuario_id INT NOT NULL,
+        filme_id INT NOT NULL,
+        data_cadastro TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+        PRIMARY KEY (usuario_id, filme_id),
+        FOREIGN KEY (usuario_id) REFERENCES usuarios(id) ON DELETE CASCADE,
+        FOREIGN KEY (filme_id) REFERENCES filmes_tarantino(id) ON DELETE CASCADE
+    );
+''')
+
         </pre>
 
         <h3>10.2 Diagrama de Relacionamento</h3>
@@ -279,12 +426,17 @@ CREATE TABLE cadastro (
         <h3>10.3 Geração de Diagramas</h3>
         <p>Para gerar diagramas do modelo de dados, você pode usar as seguintes ferramentas e comandos:</p>
         <pre>
-pip install django-extensions
-pip install graphviz
-pip install pygraphviz
-python manage.py graph_models -a -o myapp_models.png
-pip install django-schema-graph
-python manage.py runserver
+        pip install django-extensions
+        pip install graphviz
+        pip install pygraphviz
+        python manage.py graph_models -a -o myapp_models.png
+        pip install django-schema-graph
+        python manage.py runserver
+        </pre>
+        <p style="color: blue; font-weight: bold;">ACESSE: <a href="http://127.0.0.1:8000/schema/" style="color: red;">http://127.0.0.1:8000/schema/</a></p>
+
+
+
         </pre>
         <p>Após instalar o django-schema-graph, você pode acessar o diagrama do esquema em /schema/ na sua aplicação em execução.</p>
     </div>
@@ -324,6 +476,35 @@ python manage.py runserver
 | date_joined     |
 | last_login      |
 +-----------------+
+<h3>11.3 Diagrama ER em Texto</h3>
+
+Diagrama de Sequência para o caso de uso "Adicionar Filme":
+
+Usuário                   Interface                 View                   Modelo
+   |                          |                       |                       |
+   | Clica em "Adicionar Filme"|                       |                       |
+   |-------------------------->|                       |                       |
+   |                          | Exibe formulário       |                       |
+   |                          |<------------------------|                      |
+   | Preenche o formulário    |                       |                        |
+   |-------------------------->|                       |                       |
+   |                          | Envia dados do filme   |                       |
+   |                          |----------------------->|                       |
+   |                          |                       | Valida dados           |
+   |                          |                       |-------------------|    |
+   |                          |                       | Cria novo filme   |    |
+   |                          |                       |------------------>|    |
+   |                          |                       |                   |    |
+   |                          |                       | Salva filme       |    |
+   |                          |                       |------------------>|    |
+   |                          |                       |                   |    |
+   |                          |                       | Confirma salvamento    |
+   |                          |                       |<------------------|    |
+   |                          | Exibe mensagem de     |                        |
+   |                          | sucesso               |                        |
+   |<--------------------------|                       |                       |
+   |                          |                       |                        |
+
         </pre>
 
         <h3>11.3 Código PlantUML para Gerar o Diagrama ER</h3>
@@ -367,6 +548,11 @@ filme ||--o{ cadastro : "foi cadastrado"
 
         <p>Para gerar a imagem do diagrama ER, você pode copiar o código acima e colá-lo em um editor PlantUML online.</p>
     </div>
+
+    <div id="conclusao" class="section">
+
+        <h3>CONCLUSÃO__ Em última análise:  </h3>
+        Este sistema não apenas facilita o registro e o gerenciamento de informações sobre os filmes de Tarantino, mas também cria uma comunidade de fãs que podem compartilhar suas perspectivas e apreciações sobre as obras do diretor. Com sua estrutura robusta e funcionalidades bem planejadas, o Sistema de Registros de Filmes Tarantino promete ser uma ferramenta valiosa para cinéfilos e estudiosos do cinema.
 
     <div id="imagens" class="section">
         <h2>12. Diagramas Visuais</h2>
